@@ -1,4 +1,4 @@
-# Vue3 大屏项目模板
+# Vue3 web项目模板
 
 ## 已配置
 
@@ -34,13 +34,4 @@ pnpm start
 
 ```
 pnpm lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-替换正则
-
-```
-[\n\s]*"([^,]+)",[\n\s]*(true|false)[\n\s]*\],      =>   // $1
 ```
