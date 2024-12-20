@@ -1,0 +1,69 @@
+{
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.organizeImports": "never"
+  },
+  // Disable the default formatter
+  "editor.formatOnSave": false,
+  "eslint.options": {
+    "flags": [
+      "unstable_ts_config"
+    ]
+  },
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    // { "rule": "@stylistic/*", "severity": "off" },
+    // { "rule": "style*", "severity": "off" },
+    // { "rule": "*-indent", "severity": "off" },
+    // { "rule": "*-spacing", "severity": "off" },
+    // { "rule": "*-spaces", "severity": "off" },
+    // { "rule": "*-order", "severity": "off" },
+    // { "rule": "*-dangle", "severity": "off" },
+    // { "rule": "*-newline", "severity": "off" },
+    // { "rule": "*quotes", "severity": "off" },
+    // { "rule": "*semi", "severity": "off" }
+  ],
+  // The following is optional.
+  // It's better to put under project setting `.vscode/settings.json`
+  // to avoid conflicts with working with different eslint configs
+  // that does not support all formats.
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "svg",
+    "gql",
+    "graphql",
+    "astro",
+    "svelte",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
+  ],
+  "prettier.enable": true,
+  /**
+   * 解决 unocss @apply 警告问题
+   * @see https://github.com/tailwindlabs/tailwindcss/discussions/5258#discussioncomment-1979394
+   */
+  "scss.lint.unknownAtRules": "ignore",
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "postcss",
+    "less"
+  ],
+  "svn.ignoreMissingSvnWarning": true
+}

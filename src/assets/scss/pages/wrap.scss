@@ -1,0 +1,12 @@
+.global-header {
+    --uno: relative h-120px;
+}
+
+.left-menu-ul {
+    a {
+        &.active {
+            background: #07f;
+            border-radius: 4px;
+        }
+    }
+}

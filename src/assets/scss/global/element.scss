@@ -1,0 +1,31 @@
+/* stylelint-disable selector-class-pattern */
+.global-wrap {
+    .el-loading-mask {
+        background-color: rgba(255, 255, 255, 0.03);
+
+        .el-loading-spinner {
+            margin-top: -15px;
+
+            svg {
+                display: inline-block;
+            }
+
+            .el-loading-text {
+                color: #fff;
+                text-shadow: 0 0 6px #409eff;
+            }
+        }
+    }
+
+    & > .el-loading-mask {
+        .el-loading-spinner {
+            --el-loading-spinner-size: 40px;
+
+            margin-top: -20px;
+
+            .el-loading-text {
+                font-size: 16px;
+            }
+        }
+    }
+}

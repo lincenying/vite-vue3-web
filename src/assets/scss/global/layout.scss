@@ -1,0 +1,18 @@
+[data-auto-scroll] {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.v-modal {
+    --uno: op-80;
+}
+
+.body {
+    &[v-cloak] {
+        display: none;
+    }
+}

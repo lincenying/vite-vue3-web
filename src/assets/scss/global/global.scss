@@ -1,0 +1,41 @@
+body {
+    width: 100vw;
+    min-height: 100vh;
+    overflow: auto hidden;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    background-color: #091020;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+#root {
+    min-height: 100vh;
+}
+
+.scroll-none {
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@font-face {
+    font-family: led;
+    src: url('@/assets/fonts/lcd-bq.ttf') format('trueType');
+    font-display: block;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0.9;
+}
