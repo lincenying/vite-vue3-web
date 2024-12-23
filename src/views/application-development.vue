@@ -1,6 +1,7 @@
 <template>
     <div class="global-wrap index-wrap" flex="~ auto">
         <GlobalLeftMenu title="application-development"></GlobalLeftMenu>
+        <ApplicationDevelopmentManiBox></ApplicationDevelopmentManiBox>
     </div>
 </template>
 

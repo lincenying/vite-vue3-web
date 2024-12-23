@@ -7,6 +7,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ApplicationDevelopmentManiBox: typeof import('./components/application-development/mani-box.vue')['default']
+    ApplicationMigrationManiBox: typeof import('./components/application-migration/mani-box.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
@@ -18,12 +20,9 @@ declare module 'vue' {
     GlobalLeftMenu2: typeof import('./components/global/left-menu-2.vue')['default']
     GlobalLeftMenu3: typeof import('./components/global/left-menu-3.vue')['default']
     GlobalLeftMenu4: typeof import('./components/global/left-menu-4.vue')['default']
-    HomeTemplate: typeof import('./components/home/template.vue')['default']
-    PiniaTemplate: typeof import('./components/pinia/template.vue')['default']
+    PerformanceTuningManiBox: typeof import('./components/performance-tuning/mani-box.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+    SystemMigrationManiBox: typeof import('./components/system-migration/mani-box.vue')['default']
   }
 }

@@ -1,6 +1,7 @@
 <template>
     <div class="global-wrap index-wrap" flex="~ auto">
         <GlobalLeftMenu title="performance-tuning"></GlobalLeftMenu>
+        <PerformanceTuningManiBox></PerformanceTuningManiBox>
     </div>
 </template>
 

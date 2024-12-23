@@ -1,6 +1,9 @@
 <template>
-    <div class="global-wrap index-wrap" flex="~ auto">
-        <GlobalLeftMenu title="system-migration"></GlobalLeftMenu>
+    <div class="global-wrap index-wrap">
+        <div class="index-scroll" flex="~ auto">
+            <GlobalLeftMenu title="system-migration"></GlobalLeftMenu>
+            <SystemMigrationManiBox></SystemMigrationManiBox>
+        </div>
     </div>
 </template>
 

@@ -8,4 +8,9 @@ export default {
         ...(baseConfig.safelist || []),
         ...Array.from({ length: 10 }, (_, i) => `i-fad-digital${i}`),
     ],
+    theme: {
+        breakpoints: {
+            xl: '1440px',
+        },
+    },
 }

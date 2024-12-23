@@ -1,3 +1,108 @@
 .index-wrap {
-    // empty
+    .left-menu {
+        height: calc(100vh - 80px);
+    }
+
+    .migrate-wrap {
+        height: calc(100vh - 80px - 108px);
+    }
+
+    .list-item {
+        cursor: pointer;
+        background-color: #4a505866;
+
+        &.active {
+            background-image: linear-gradient(173deg, #5c8dc4, #597290 28%, #576373 97%);
+        }
+    }
+
+    .list-item-arrow {
+        background: url('https://www.hikunpeng.com/_static3/arrow1.DPhhh001.png') no-repeat;
+        background-size: cover;
+    }
+
+    .card-item {
+        position: relative;
+        background: #313640;
+
+        &.card-item-2 {
+            position: relative;
+            background-image: url('https://www.hikunpeng.com/_static3/card.DGtHL1ag.png');
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            &::after {
+                position: absolute;
+                right: -12px;
+                bottom: 12px;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+                content: '';
+                background-image: linear-gradient(196deg, #258bc95c 4%, #487fad00 46%);
+            }
+        }
+
+        &.card-item-3 {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 2;
+                width: 100%;
+                height: 100%;
+                border-radius: 8px;
+                content: '';
+                backdrop-filter: blur(10px);
+                background-image: linear-gradient(180deg, #0a59f7, #07f);
+            }
+
+            &::after {
+                position: absolute;
+                top: -6px;
+                right: -6px;
+                z-index: 1;
+                width: calc(100% + 12px);
+                height: calc(100% + 12px);
+                background-color: #258bc95c;
+                border-radius: 14px;
+                content: '';
+            }
+        }
+    }
+
+    .card-item-arrow {
+        background: url('https://www.hikunpeng.com/_static3/arrow2.BDAHgP7X.png') no-repeat;
+        background-size: cover;
+    }
+
+    .o-btn {
+        backdrop-filter: blur(10px);
+        background-image: linear-gradient(180deg, #0a59f7, #07f);
+
+        &:hover {
+            background-image: linear-gradient(180deg, #ffffff26, #ffffff26), linear-gradient(180deg, #0a59f7, #07f);
+        }
+    }
+
+    .tip {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 183px);
+        z-index: 9;
+        display: inline-block;
+        width: 367px;
+        height: 101px;
+        padding: 26px 50px;
+        font-size: 16px;
+        line-height: 24px;
+        background-image: url('https://www.hikunpeng.com/_static3/tip-bg.BlMrcKoJ.png');
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
