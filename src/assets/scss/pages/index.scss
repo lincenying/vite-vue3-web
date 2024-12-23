@@ -90,19 +90,6 @@
     }
 
     .tip {
-        position: absolute;
-        top: 0;
-        left: calc(50% - 183px);
-        z-index: 9;
-        display: inline-block;
-        width: 367px;
-        height: 101px;
-        padding: 26px 50px;
-        font-size: 16px;
-        line-height: 24px;
         background-image: url('https://www.hikunpeng.com/_static3/tip-bg.BlMrcKoJ.png');
-        background-position: 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }

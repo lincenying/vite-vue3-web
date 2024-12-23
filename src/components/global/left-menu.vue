@@ -1,5 +1,5 @@
 <template>
-    <div class="left-menu" flex-none w-264px p="24px r-0" bg-hex-3f43488c lt-xl="p-16px pr-0 w-208px">
+    <div class="left-menu" flex-none w-264px p="24px r-0" bg-hex-3f43488c lt-m1440="p-16px pr-0 w-208px">
         <el-scrollbar tag="div" wrap-class="scroll-wrap" view-class="scroll-view" style="height: 100%;">
             <div mr-16px>
                 <p ml-8px text-16px text-hex-fff6 lh-24px>场景</p>

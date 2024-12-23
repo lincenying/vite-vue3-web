@@ -10,7 +10,7 @@ export default {
     ],
     theme: {
         breakpoints: {
-            xl: '1440px',
+            m1440: '1440px',
         },
     },
 }

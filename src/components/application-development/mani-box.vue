@@ -3,7 +3,7 @@
         <div flex="~ items-center justify-center" pt-12px>
             <div
                 class="list-item" :class="step === 1 ? 'active' : ''"
-                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-xl="w-200px"
+                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-m1440="w-200px"
                 @click="handleChange(1)"
             >
                 <div class="i-carbon-development" w-32px h-32px></div>
@@ -15,7 +15,7 @@
             <div class="list-item-arrow" w-96px h-96px></div>
             <div
                 class="list-item" :class="step === 2 ? 'active' : ''"
-                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-xl="w-200px"
+                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-m1440="w-200px"
                 @click="handleChange(2)"
             >
                 <div class="i-carbon-debug" w-32px h-32px></div>
@@ -27,7 +27,7 @@
             <div class="list-item-arrow" w-96px h-96px></div>
             <div
                 class="list-item" :class="step === 3 ? 'active' : ''"
-                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-xl="w-200px"
+                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-m1440="w-200px"
                 @click="handleChange(3)"
             >
                 <div class="i-carbon-meter" w-32px h-32px></div>
@@ -78,7 +78,13 @@
                                 <div class="i-carbon-ibm-cloud-pak-applications" w-64px h-64px relative z-3></div>
                                 <p mt-24px text="18px" lh-26px relative z-3>DPAK应用</p>
                                 <p mt-8px text="14px" lh-22px relative z-3>鲲鹏DPAK提供面向SmartNIC场景的业务卸载开发能力，支持网络卸载、虚拟化卸载等场景。</p>
-                                <div pos-absolute right-4px top-4px bg-hex-24242466 b="1px solid hex-24242466 rd-40px" p="y-2px x-12px">敬请期待</div>
+                                <div
+                                    pos-absolute right-4px top-4px
+                                    bg-hex-24242466 b="1px solid hex-24242466 rd-40px"
+                                    p="y-2px x-12px"
+                                >
+                                    敬请期待
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,12 +109,22 @@
                 </template>
                 <div v-else max-w-full max-h-full relative>
                     <img max-w-full max-h-full :src="currImgUrl[1]" alt="">
-                    <div pos-absolute top="13.89%" left-0 w-full style="height: calc(100% - 13.89% - 20px)">
+                    <div
+                        pos-absolute top="13.89%" left-0
+                        w-full h="[calc(100%-13.89%-20px)]"
+                    >
                         <el-scrollbar tag="div" wrap-class="scroll-wrap" view-class="scroll-view" style="height: 100%;">
                             <img max-w-full max-h-full :src="currImgUrl[2]">
                         </el-scrollbar>
                     </div>
-                    <div class="tip">分析完成后，进入分析报告滚动查看丰富的分析内容</div>
+                    <div
+                        class="tip"
+                        absolute top-0 left="[calc(50%-183px)]" z-9
+                        inline-block w-367px h-101px px-50px py-26px text-16px lh-24px
+                        bg="[50%] no-repeat cover"
+                    >
+                        分析完成后，进入分析报告滚动查看丰富的分析内容
+                    </div>
                 </div>
             </div>
             <div v-else flex="~ justify-center" w-full h-full pb-24px>
@@ -170,6 +186,8 @@ const imgUrl = ref<string[][]>([
         'https://www.hikunpeng.com/_static3/native-bottom.wpiC2srn.png',
         'https://www.hikunpeng.com/_static3/native-scroll.URvTSL9F.png',
     ],
+    ['', '', ''],
+    ['', '', ''],
     ['', '', ''],
 ])
 

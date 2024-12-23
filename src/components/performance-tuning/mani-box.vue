@@ -3,7 +3,7 @@
         <div flex="~ items-center justify-center" pt-12px>
             <div
                 class="list-item" :class="step === 1 ? 'active' : ''"
-                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-xl="w-200px"
+                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-m1440="w-200px"
                 @click="handleChange(1)"
             >
                 <div class="i-carbon-ibm-elo-engineering-insights" w-32px h-32px></div>
@@ -14,7 +14,7 @@
             <div class="list-item-arrow" w-96px h-96px></div>
             <div
                 class="list-item" :class="step === 2 ? 'active' : ''"
-                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-xl="w-200px"
+                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-m1440="w-200px"
                 @click="handleChange(2)"
             >
                 <div class="i-carbon-ibm-knowledge-catalog" w-32px h-32px></div>
@@ -25,7 +25,7 @@
             <div class="list-item-arrow" w-96px h-96px></div>
             <div
                 class="list-item" :class="step === 3 ? 'active' : ''"
-                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-xl="w-200px"
+                flex="~ items-center" w-280px h-64px p="x-40px t-8px b-12px" border-rd-4px lt-m1440="w-200px"
                 @click="handleChange(3)"
             >
                 <div class="i-carbon-ibm-lpa" w-32px h-32px></div>
