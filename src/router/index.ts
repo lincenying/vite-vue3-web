@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter } from 'vue-router'
 
-const views = import.meta.glob('../views/*.vue')
+const views = import.meta.glob('../views/**/*.vue')
 
 let routes: RouteRecordRaw[] = []
 Object.keys(views).forEach((path: string) => {
@@ -11,13 +11,15 @@ Object.keys(views).forEach((path: string) => {
         routes.push({
             name: name.replace('/', ''),
             path: name === '/home' ? '/' : name,
-            component: views[path], // () => import('./views/*.vue')
+            component: views[path], // () => import('./views/**/*.vue')
         })
     }
     return {}
 })
 
-routes = routes.concat([{ path: '/:pathMatch(.*)', redirect: '/system-migration' }])
+routes = routes.concat([{ path: '/:pathMatch(.*)', redirect: '/' }])
+
+console.log(routes)
 
 const router = createRouter({
     history: createWebHashHistory(),

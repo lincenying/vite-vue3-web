@@ -1,14 +1,28 @@
 body {
-    width: 100vw;
+    // width: 100vw;
     min-height: 100vh;
-    overflow: auto hidden;
+    overflow: hidden scroll;
     font-size: 12px;
     line-height: 1;
-    color: #fff;
-    background-color: #091020;
+    color: #202935;
+    background-color: #f3f5f7;
 
-    &::-webkit-scrollbar {
-        display: none;
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
+
+    a {
+        transition: color 0.3s;
+
+        &:hover {
+            color: #0d6efd;
+        }
+
+        &:active,
+        &:focus-visible,
+        &:focus {
+            outline: none;
+        }
     }
 }
 
@@ -39,3 +53,18 @@ body {
 .fade-leave-to {
     opacity: 0.9;
 }
+
+/* start--文本行数限制--start */
+.line-2,
+[line-2],
+.line-3,
+[line-3],
+.line-4,
+[line-4],
+.line-5,
+[line-5] {
+    word-break: break-all;
+    white-space: inherit !important;
+}
+
+/* end--文本行数限制--end */

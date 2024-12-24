@@ -1,19 +1,22 @@
 <template>
-    <div id="root" flex="~ col">
+    <div id="root" v-loading="globalLoading" flex="~ col" element-loading-text="数据加载中...">
         <template v-if="!needLogin">
-            <globalHeader page="home" />
-            <router-view v-slot="{ Component }" class="body">
-                <transition
-                    v-if="!globalLoading" name="fade" mode="out-in"
-                    @before-enter="handleBeforeEnter"
-                    @after-enter="handleAfterEnter"
-                    @after-leave="handleAfterLeave"
-                >
-                    <keep-alive v-if="!globalLoading" :include="cacheComponents">
-                        <component :is="Component" />
-                    </keep-alive>
-                </transition>
-            </router-view>
+            <template v-if="!globalLoading">
+                <globalHeader page="home" />
+                <router-view v-slot="{ Component }" class="body">
+                    <transition
+                        name="fade" mode="out-in"
+                        @before-enter="handleBeforeEnter"
+                        @after-enter="handleAfterEnter"
+                        @after-leave="handleAfterLeave"
+                    >
+                        <keep-alive :include="cacheComponents">
+                            <component :is="Component" />
+                        </keep-alive>
+                    </transition>
+                </router-view>
+                <globalFooter />
+            </template>
         </template>
         <pageLogin v-else />
     </div>
@@ -29,6 +32,8 @@ defineOptions({
 // pinia 状态管理 ===>
 const globalStore = useGlobalStore()
 const { globalLoading } = storeToRefs(globalStore)
+
+const productStore = useProductStore()
 // const tmpCount = computed(() => globalStore.counter)
 // 监听状态变化
 globalStore.$subscribe((mutation, state) => {
@@ -59,6 +64,7 @@ provide(onLoginKey, (payload: boolean) => {
 // 全局组件通信 <===
 
 async function init() {
+    await productStore.getCtegory()
     globalStore.setGlobalLoading(false)
 }
 

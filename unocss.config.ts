@@ -11,6 +11,7 @@ export default {
     theme: {
         breakpoints: {
             m1440: '1440px',
+            m1360: '1360.1px',
         },
     },
 }

@@ -7,22 +7,26 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    ApplicationDevelopmentManiBox: typeof import('./components/application-development/mani-box.vue')['default']
-    ApplicationMigrationManiBox: typeof import('./components/application-migration/mani-box.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     EmptyComponents: typeof import('./components/empty-components.vue')['default']
     GlobalDigital: typeof import('./components/global/digital.tsx')['default']
-    GlobalHeader: typeof import('./components/global/header.tsx')['default']
-    GlobalLeftMenu: typeof import('./components/global/left-menu.vue')['default']
-    GlobalLeftMenu1: typeof import('./components/global/left-menu-1.vue')['default']
-    GlobalLeftMenu2: typeof import('./components/global/left-menu-2.vue')['default']
-    GlobalLeftMenu3: typeof import('./components/global/left-menu-3.vue')['default']
-    GlobalLeftMenu4: typeof import('./components/global/left-menu-4.vue')['default']
-    PerformanceTuningManiBox: typeof import('./components/performance-tuning/mani-box.vue')['default']
+    GlobalFooter: typeof import('./components/global/footer.vue')['default']
+    GlobalHeader: typeof import('./components/global/header.vue')['default']
+    HomeCategory: typeof import('./components/home/category.vue')['default']
+    HomeRecommend: typeof import('./components/home/recommend.vue')['default']
+    NewsArticleRec: typeof import('./components/news/article-rec.vue')['default']
+    NewsRecommend: typeof import('./components/news/recommend.vue')['default']
+    OtherRelatedRecom: typeof import('./components/other/related-recom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SystemMigrationManiBox: typeof import('./components/system-migration/mani-box.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

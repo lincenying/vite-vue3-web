@@ -4,5 +4,13 @@ export interface GlobalState {
     ISDEV: boolean
     ISPRE: boolean
     ISPROD: boolean
+}
 
+export interface ProductCategory {
+    id: number
+    title: string
+}
+
+export interface ProductState {
+    category: ProductCategory[]
 }

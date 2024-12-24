@@ -373,6 +373,9 @@
     "useId": true,
     "useModel": true,
     "useTemplateRef": true,
-    "useEchartsMap": true
+    "useEchartsMap": true,
+    "useProductStore": true,
+    "productStoreWithout": true,
+    "ElMessage": true
   }
 }

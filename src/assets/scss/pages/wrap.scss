@@ -1,12 +1,12 @@
 .global-header {
-    --uno: relative h-120px;
+    // background: #fff;
 }
 
-.left-menu-ul {
-    a {
-        &.active {
-            background: #07f;
-            border-radius: 4px;
+.global-wrap {
+    .article-content {
+        p {
+            margin-bottom: 24px;
+            text-indent: 2em;
         }
     }
 }

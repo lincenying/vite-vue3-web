@@ -1,5 +1,17 @@
 /* stylelint-disable selector-class-pattern */
+.el-dropdown-link {
+    &:active,
+    &:focus-visible,
+    &:focus {
+        outline: none;
+    }
+}
+
 .global-wrap {
+    .el-pagination {
+        --el-pagination-button-bg-color: #fff;
+    }
+
     .el-loading-mask {
         background-color: rgba(255, 255, 255, 0.03);
 

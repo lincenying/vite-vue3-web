@@ -1,0 +1,11 @@
+.index-wrap {
+    .home-ul {
+        li {
+            &:hover {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
