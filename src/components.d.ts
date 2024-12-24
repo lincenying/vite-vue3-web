@@ -20,7 +20,6 @@ declare module 'vue' {
     GlobalHeader: typeof import('./components/global/header.vue')['default']
     HomeCategory: typeof import('./components/home/category.vue')['default']
     HomeRecommend: typeof import('./components/home/recommend.vue')['default']
-    NewsArticleRec: typeof import('./components/news/article-rec.vue')['default']
     NewsRecommend: typeof import('./components/news/recommend.vue')['default']
     OtherRelatedRecom: typeof import('./components/other/related-recom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

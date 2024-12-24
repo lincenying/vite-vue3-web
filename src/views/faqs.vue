@@ -120,7 +120,7 @@ defineOptions({
 })
 
 useHead({
-    title: '算力使能赋能工具-性能调优',
+    title: 'MMF小屋-性能调优',
 })
 
 const __name__ = 'RouterFaqs'

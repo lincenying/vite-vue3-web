@@ -8,4 +8,12 @@
             }
         }
     }
+
+    .cat-list-active {
+        --uno: bg-hex-f3f5f7 b-rd-4px;
+
+        a {
+            --uno: text-hex-007bff;
+        }
+    }
 }

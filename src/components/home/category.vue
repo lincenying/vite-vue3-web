@@ -3,17 +3,8 @@
         <div class="global-box-title" text="1rem hex-202935" font-bold m="0 b-24px" pl-16px b-l="6px bolid hex-007bff">产品展示</div>
         <div class="global-box-content">
             <ul class="cat-list">
-                <li pl-22px hover="bg-hex-f3f5f7 b-rd-4px" transition="all duration-.3s">
-                    <router-link block text-14px lh-32px hover="text-hex-007bff" to="/?category=wazi">时尚袜子</router-link>
-                </li>
-                <li pl-22px hover="bg-hex-f3f5f7 b-rd-4px" transition="all duration-.3s">
-                    <router-link block text-14px lh-32px hover="text-hex-007bff" to="/?category=shangyi">流行上装</router-link>
-                </li>
-                <li pl-22px hover="bg-hex-f3f5f7 b-rd-4px" transition="all duration-.3s">
-                    <router-link block text-14px lh-32px hover="text-hex-007bff" to="/?category=qunzi">浪漫裙子</router-link>
-                </li>
-                <li pl-22px hover="bg-hex-f3f5f7 b-rd-4px" transition="all duration-.3s">
-                    <router-link block text-14px lh-32px hover="text-hex-007bff" to="/?category=kuzi">魅惑裤子</router-link>
+                <li v-for="(item, index) in category" :key="index" pl-22px hover="bg-hex-f3f5f7 b-rd-4px" transition="all duration-.3s" :class="{ 'cat-list-active': item.id === categoryId }">
+                    <router-link block text-14px lh-32px hover="text-hex-007bff" :to="`/?category=${item.id}`">{{ item.title }}</router-link>
                 </li>
             </ul>
         </div>
@@ -25,6 +16,14 @@ defineOptions({
     name: 'ProductCategory',
 })
 
+const props = defineProps<{
+    categoryId: number
+}>()
+const { categoryId } = toRefs(props)
+
 const __name__ = 'product-category'
 const { options: _ } = useGlobal(__name__)
+
+const productStore = useProductStore()
+const { category } = storeToRefs(productStore)
 </script>

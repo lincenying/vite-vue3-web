@@ -35,7 +35,7 @@ interface DataType {
     imgUrl: string
 }
 
-let ls = $(useStorage<DataType[]>('storageKey', []))
+let ls = $(useStorage<DataType[]>('product-recommend', []))
 let data1 = $ref<DataType[]>(ls)
 
 async function getData() {

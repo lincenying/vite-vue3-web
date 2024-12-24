@@ -376,6 +376,8 @@
     "useEchartsMap": true,
     "useProductStore": true,
     "productStoreWithout": true,
-    "ElMessage": true
+    "ElMessage": true,
+    "productList": true,
+    "productListStore": true
   }
 }

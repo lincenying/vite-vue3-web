@@ -54,7 +54,7 @@ defineOptions({
 })
 
 useHead({
-    title: '算力使能赋能工具-系统迁移',
+    title: 'MMF小屋-系统迁移',
 })
 
 const __name__ = 'RouterHomeDetail'

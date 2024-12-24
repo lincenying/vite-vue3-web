@@ -170,7 +170,7 @@ defineOptions({
 })
 
 useHead({
-    title: '算力使能赋能工具-应用迁移',
+    title: 'MMF小屋-应用迁移',
 })
 
 const __name__ = 'RouterCases'

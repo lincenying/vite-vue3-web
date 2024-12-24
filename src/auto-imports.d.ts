@@ -89,6 +89,8 @@ declare global {
   const openWindow: typeof import('./composables/download')['openWindow']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaInit: typeof import('./stores/index')['piniaInit']
+  const productList: typeof import('./composables/config')['productList']
+  const productListStore: typeof import('./composables/config')['productListStore']
   const productStoreWithout: typeof import('./stores/use-product-store')['productStoreWithout']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
@@ -343,7 +345,6 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('./composables/fetch')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -424,6 +425,7 @@ declare module 'vue' {
     readonly openWindow: UnwrapRef<typeof import('./composables/download')['openWindow']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaInit: UnwrapRef<typeof import('./stores/index')['piniaInit']>
+    readonly productListStore: UnwrapRef<typeof import('./composables/config')['productListStore']>
     readonly productStoreWithout: UnwrapRef<typeof import('./stores/use-product-store')['productStoreWithout']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>

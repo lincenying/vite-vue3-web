@@ -130,7 +130,7 @@ defineOptions({
 })
 
 useHead({
-    title: '算力使能赋能工具-应用开发',
+    title: 'MMF小屋-应用开发',
 })
 
 const __name__ = 'RouterNews'
