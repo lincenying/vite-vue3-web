@@ -1,4 +1,4 @@
-import type { MockMethod } from '@lincy/vite-plugin-mock'
+import type { MockMethod } from 'vite-plugin-mock'
 import { baseApi, getRandomValue } from './_api'
 
 const imgUrl = [
@@ -52,7 +52,8 @@ export default [
         // 列表
         url: `/${baseApi}/home/getList`,
         method: 'get',
-        response: ({ query }) => {
+        response: (opt: any) => {
+            const query = opt.query
             const page = query.page || 1
             const pageSize = query.pageSize || 12
             return {

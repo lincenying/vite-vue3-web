@@ -378,6 +378,11 @@
     "productStoreWithout": true,
     "ElMessage": true,
     "productList": true,
-    "productListStore": true
+    "productListStore": true,
+    "CasesListStore": true,
+    "casesListStore": true,
+    "newsListStore": true,
+    "faqsListStore": true,
+    "useSaveScroll": true
   }
 }

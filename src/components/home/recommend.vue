@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import type { ProductType } from '~/views/home.types'
 import { isEmpty } from '@lincy/utils'
 
 defineOptions({
@@ -29,21 +30,14 @@ defineOptions({
 const __name__ = 'product-recommend'
 const { options: _ } = useGlobal(__name__)
 
-interface DataType {
-    id: string
-    title: string
-    imgUrl: string
-}
-
-let ls = $(useStorage<DataType[]>('product-recommend', []))
-let data1 = $ref<DataType[]>(ls)
+let ls = $(useStorage<ProductType[]>('product-recommend', []))
+let data1 = $ref<ProductType[]>(ls)
 
 async function getData() {
-    const { code, data } = await $api.get<DataType[]>('/home/getRecommend', { })
+    const { code, data } = await $api.get<ProductType[]>('/home/getRecommend', { })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(ls), data)) {
         data1 = data
         ls = data
-        console.log(data1)
     }
 }
 

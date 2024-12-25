@@ -1,6 +1,7 @@
 import type { AnyFn } from '@vueuse/core'
 import type { LoadedType } from '@/types'
 import { isInt } from '@lincy/utils'
+import ls from 'store2'
 
 export function useGlobal(key?: string) {
     let ins = getCurrentInstance()!
@@ -182,36 +183,17 @@ export function useDataIsLoaded<T, E>(payload: LoadedType<T, E>) {
     return scope
 }
 
-/**
- * echarts 按字符个数自动换行
- * @param params 传入字符串
- * @param wordNum 换行的字数
- */
-export function useFormatter(params: string, wordNum?: number) {
-    if (!wordNum) {
-        return params
-    }
-    let newParamsName = ''
-    const paramsNameNumber = params.length
-    const provideNumber = wordNum
-    const rowNumber = Math.ceil(paramsNameNumber / provideNumber)
-    if (paramsNameNumber > provideNumber) {
-        for (let p = 0; p < rowNumber; p++) {
-            let tempStr = ''
-            const start = p * provideNumber
-            const end = start + provideNumber
-            if (p === rowNumber - 1) {
-                tempStr = params.substring(start, paramsNameNumber)
-            }
-            else {
-                tempStr = `${params.substring(start, end)}\n`
-            }
+export function useSaveScroll() {
+    const route = useRoute()
 
-            newParamsName += tempStr
-        }
-    }
-    else {
-        newParamsName = params
-    }
-    return newParamsName
+    onMounted(() => {
+        const scrollTop = ls.get(route.fullPath) || 0
+        window.scrollTo({ top: scrollTop || 0, behavior: 'smooth' })
+        ls.remove(route.fullPath)
+    })
+
+    onBeforeRouteLeave((_to, from, next) => {
+        ls.set(from.fullPath, window.scrollY || 0)
+        next()
+    })
 }
