@@ -1,7 +1,7 @@
 <template>
-    <div class="global-header" h="80px!" flex="~ none justify-center items-center" bg-hex-fff fixed left-0 top-0 w-full z-999>
+    <div class="global-header" flex="~ none justify-center items-center" fixed z-999 left-0 top-0 w-full h="80px!" bg-hex-fff>
         <div flex="~ auto" max-w-1293px>
-            <img :src="NavLogo" class="w-109px h-31px" alt="">
+            <img :src="NavLogo" w-109px h-31px alt="">
             <div flex="~ items-center" ml-64px>
                 <el-dropdown mr-32px @command="handleCommand">
                     <span class="el-dropdown-link">

@@ -22,6 +22,7 @@ declare module 'vue' {
     HomeRecommend: typeof import('./components/home/recommend.vue')['default']
     NewsRecommend: typeof import('./components/news/recommend.vue')['default']
     OtherRelatedRecom: typeof import('./components/other/related-recom.vue')['default']
+    OtherTopBanner: typeof import('./components/other/top-banner.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

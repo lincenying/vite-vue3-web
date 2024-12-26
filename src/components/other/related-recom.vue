@@ -1,6 +1,6 @@
 <template>
-    <div class="global-box" w="full" p-24px mb-24px bg="hex-fff" border-rd-6px>
-        <div class="global-box-title" text="1rem hex-202935" font-bold m="0 b-24px" pl-16px b-l="6px bolid hex-007bff">相关推荐</div>
+    <div class="global-box" w="full" mb-24px p-24px bg="hex-fff" b-rd-6px>
+        <div class="global-box-title" m="0 b-24px" pl-16px text="1rem hex-202935" font-bold b-l="6px bolid hex-007bff">相关推荐</div>
         <div class="global-box-content">
             <ul flex="~ wrap justify-between" mb--24px>
                 <template v-if="column === 'products'">

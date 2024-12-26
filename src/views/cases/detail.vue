@@ -1,12 +1,6 @@
 <template>
     <div class="global-wrap index-wrap">
-        <div class="banner-wrap" relative>
-            <img src="@/assets/images/home/page-banner.jpg" max-w-full alt="">
-            <div class="banner-content" flex="~ col items-center" absolute top="50%" left="50%" translate="[-50%,-50%]">
-                <h3 text="hex-fff 27px" tracking-2px>案例展示</h3>
-                <p mt-16px text="hex-fff 15px" tracking-1px>这是一段描述文字，可以自定义你想要的文字</p>
-            </div>
-        </div>
+        <OtherTopBanner title="案例展示" intro="这是一段描述文字，可以自定义你想要的文字" :img="topBannerImg"></OtherTopBanner>
         <div ref="navigation" class="navigation" flex="~ justify-center items-center" h-42px bg-hex-fff>
             <div max-w-1293px flex-auto text-hex-8a8a8a lt-m1360="mx-24px">当前位置：<router-link to="/">首页</router-link> » <router-link to="/cases">案例展示</router-link> » 案例详情</div>
         </div>
@@ -17,7 +11,7 @@
                     <NewsRecommend></NewsRecommend>
                 </div>
                 <div class="main" w-1px ml-24px flex="auto">
-                    <div border-rd-6px mb-24px p-32px bg="hex-fff">
+                    <div mb-24px p-32px b-rd-6px bg="hex-fff">
                         <h1 font-bold text="center hex-202935 28px">{{ data1.title }}</h1>
                         <div flex="~ justify-center items-center" mt-16px text="hex-8a8a8a">
                             <i class="i-carbon-user-avatar" w-14px h-14px mr-5px></i>
@@ -40,6 +34,7 @@
 <script setup lang="ts">
 import type { NewsType } from '../news.types'
 import { isEmpty } from '@lincy/utils'
+import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
 defineOptions({
     name: 'RouterCasesDetail',
@@ -50,9 +45,6 @@ const title = ref('')
 useHead({
     title,
 })
-
-const __name__ = 'RouterHomeDetail'
-const { options: _ } = useGlobal(__name__)
 
 const route = useRoute()
 

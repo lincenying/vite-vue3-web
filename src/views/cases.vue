@@ -1,14 +1,8 @@
 <template>
     <div class="global-wrap cases-wrap">
-        <div class="banner-wrap" relative>
-            <img src="@/assets/images/home/page-banner.jpg" max-w-full alt="">
-            <div class="banner-content" flex="~ col items-center" absolute top="50%" left="50%" translate="[-50%,-50%]">
-                <h3 text="hex-fff 27px" tracking-2px>案例展示</h3>
-                <p mt-16px text="hex-fff 15px" tracking-1px>这是一段描述文字，可以自定义你想要的文字</p>
-            </div>
-        </div>
+        <OtherTopBanner title="案例展示" intro="这是一段描述文字，可以自定义你想要的文字" :img="topBannerImg"></OtherTopBanner>
         <div ref="navigation" class="navigation" flex="~ justify-center items-center" h-42px bg-hex-fff>
-            <div max-w-1293px flex-auto text-hex-8a8a8a lt-m1360="mx-24px">当前位置：<router-link to="/">首页</router-link> » 案例展示</div>
+            <div flex-auto max-w-1293px text-hex-8a8a8a lt-m1360="mx-24px">当前位置：<router-link to="/">首页</router-link> » 案例展示</div>
         </div>
         <div flex="~ justify-center" mt-24px lt-m1360="mx-24px">
             <div flex="~ auto justify-between" max-w-1293px>
@@ -16,10 +10,13 @@
                     <HomeRecommend></HomeRecommend>
                     <NewsRecommend></NewsRecommend>
                 </div>
-                <div class="main" w-1px ml-24px flex="auto">
+                <div class="main" flex="auto" w-1px ml-24px>
                     <ul class="cases-ul">
-                        <li v-for="(item, index) in data1.list" :key="index" b-rd-6px flex="~ wrap items-center" p-24px overflow-hidden mb-24px bg="hex-fff">
-                            <router-link b-rd-4px flex="[0_0_300px]" h-200px mr-24px overflow-hidden :to="`/cases/detail?id=${item.id}`">
+                        <li
+                            v-for="(item, index) in data1.list" :key="index"
+                            flex="~ wrap items-center" mb-24px p-24px overflow-hidden b-rd-6px bg="hex-fff"
+                        >
+                            <router-link flex="[0_0_300px]" h-200px mr-24px b-rd-4px overflow-hidden :to="`/cases/detail?id=${item.id}`">
                                 <img
                                     :alt="item.title"
                                     :src="item.imgUrl"
@@ -35,7 +32,7 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="page" mb-24px flex="~ justify-center">
+                    <div class="page" flex="~ justify-center" mb-24px>
                         <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
                     </div>
                 </div>
@@ -47,6 +44,7 @@
 <script setup lang="ts">
 import type { CasesListType } from './cases.types'
 import { isEmpty } from '@lincy/utils'
+import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
 defineOptions({
     name: 'RouterCases',
@@ -55,9 +53,6 @@ defineOptions({
 useHead({
     title: 'MMF小屋-案例展示',
 })
-
-const __name__ = 'RouterCases'
-const { options: _ } = useGlobal(__name__)
 
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
