@@ -9,27 +9,10 @@ const config: { server: ServerOptions, build: BuildOptions } = {
         port: 8871,
         open: true,
         proxy: {
-            '/api-gateway': {
-                target: 'https://imoc.huawei.com',
-                changeOrigin: true,
-                secure: false,
-                rewrite: (path: string) => path.replace(/^\/api-gateway/, '/api-gateway'),
-            },
             '/api': {
                 target: 'http://localhost:8771',
                 changeOrigin: true,
                 rewrite: (path: string) => path.replace(/^\/api/, '/mock-api'),
-            },
-            '/SmartIT': {
-                target: 'https://imoc.huawei.com',
-                changeOrigin: true,
-                secure: false,
-                rewrite: (path: string) => path.replace(/^\/SmartIT/, '/SmartIT'),
-                headers: {
-                    host: 'https://imoc.huawei.com',
-                    origin: 'https://imoc.huawei.com',
-                    referer: 'https://imoc.huawei.com',
-                },
             },
         },
         /**

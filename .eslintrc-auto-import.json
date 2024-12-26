@@ -384,6 +384,11 @@
     "newsListStore": true,
     "faqsListStore": true,
     "useSaveScroll": true,
-    "newsDetailStore": true
+    "newsDetailStore": true,
+    "GlobalState": true,
+    "ProductCategory": true,
+    "ProductState": true,
+    "usePreferredReducedTransparency": true,
+    "useSSRWidth": true
   }
 }
