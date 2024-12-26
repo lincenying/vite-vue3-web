@@ -53,7 +53,7 @@ defineOptions({
 })
 
 useHead({
-    title: 'MMF小屋-应用迁移',
+    title: 'MMF小屋-案例展示',
 })
 
 const __name__ = 'RouterCases'
@@ -70,12 +70,13 @@ function scrollToNav() {
     if (top !== undefined) {
         top += window.scrollY - 80
     }
-    console.log(top)
     window.scrollTo({ top: top || 0, behavior: 'smooth' })
 }
 
+const route = useRoute()
+
 async function getData() {
-    const { code, data } = await $api.get<CasesListType>('/cases/getList', { page, pageSize })
+    const { code, data } = await $api.get<CasesListType>('/cases/getList', { page, pageSize, ...route.query })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(casesListStore.value), data)) {
         data1 = data
         casesListStore.value = data
@@ -88,16 +89,16 @@ async function currentChange(newPage: number) {
     scrollToNav()
 }
 
-const route = useRoute()
-
-watchEffect(() => {
-    if (route.query.category || route.query.tag) {
-        getData()
-        scrollToNav()
-    }
+watch([
+    () => route.query.category,
+    () => route.query.tag,
+], () => {
+    page = 1
+    getData()
+    scrollToNav()
+}, {
+    immediate: true,
 })
-
-getData()
 
 useSaveScroll()
 </script>

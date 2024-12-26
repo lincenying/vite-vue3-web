@@ -47,10 +47,6 @@ defineOptions({
 
 const title = ref('')
 
-useHead({
-    title,
-})
-
 const __name__ = 'RouterHomeDetail'
 const { options: _ } = useGlobal(__name__)
 
@@ -58,13 +54,16 @@ const route = useRoute()
 
 let data1 = $ref<NewsType>(newsDetailStore)
 
+useHead({
+    title,
+})
+
 const navigation = ref<HTMLElement>()
 function scrollToNav() {
     let top = navigation.value?.getBoundingClientRect().top
     if (top !== undefined) {
         top += window.scrollY - 80
     }
-    console.log(top)
     window.scrollTo({ top: top || 0, behavior: 'smooth' })
 }
 
@@ -77,11 +76,11 @@ async function getData() {
     }
 }
 
-watchEffect(() => {
-    if (route.query.id) {
-        getData()
-        scrollToNav()
-    }
+watch(() => route.query.id, () => {
+    getData()
+    scrollToNav()
+}, {
+    immediate: true,
 })
 
 useSaveScroll()

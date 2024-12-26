@@ -64,7 +64,6 @@ function scrollToNav() {
     if (top !== undefined) {
         top += window.scrollY - 80
     }
-    console.log(top)
     window.scrollTo({ top: top || 0, behavior: 'smooth' })
 }
 
@@ -77,11 +76,11 @@ async function getData() {
     }
 }
 
-watchEffect(() => {
-    if (route.query.id) {
-        getData()
-        scrollToNav()
-    }
+watch(() => route.query.id, () => {
+    getData()
+    scrollToNav()
+}, {
+    immediate: true,
 })
 
 useSaveScroll()

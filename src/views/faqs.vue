@@ -42,7 +42,7 @@ defineOptions({
 })
 
 useHead({
-    title: 'MMF小屋-性能调优',
+    title: 'MMF小屋-常见问题',
 })
 
 const __name__ = 'RouterFaqs'
@@ -59,12 +59,13 @@ function scrollToNav() {
     if (top !== undefined) {
         top += window.scrollY - 80
     }
-    console.log(top)
     window.scrollTo({ top: top || 0, behavior: 'smooth' })
 }
 
+const route = useRoute()
+
 async function getData() {
-    const { code, data } = await $api.get<FaqsListType>('/faqs/getList', { page, pageSize })
+    const { code, data } = await $api.get<FaqsListType>('/faqs/getList', { page, pageSize, ...route.query })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(faqsListStore.value), data)) {
         data1 = data
         faqsListStore.value = data
@@ -77,15 +78,16 @@ async function currentChange(newPage: number) {
     scrollToNav()
 }
 
-const route = useRoute()
-
-watchEffect(() => {
-    if (route.query.category || route.query.tag) {
-        getData()
-        scrollToNav()
-    }
+watch([
+    () => route.query.category,
+    () => route.query.tag,
+], () => {
+    page = 1
+    getData()
+    scrollToNav()
+}, {
+    immediate: true,
 })
 
-getData()
 useSaveScroll()
 </script>

@@ -19,8 +19,6 @@ Object.keys(views).forEach((path: string) => {
 
 routes = routes.concat([{ path: '/:pathMatch(.*)', redirect: '/' }])
 
-console.log(routes)
-
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
