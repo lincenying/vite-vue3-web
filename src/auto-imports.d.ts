@@ -67,6 +67,7 @@ declare global {
   const loginMsgBox: typeof import('./composables/message')['loginMsgBox']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
+  const newsDetailStore: typeof import('./composables/config')['newsDetailStore']
   const newsListStore: typeof import('./composables/config')['newsListStore']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
@@ -407,6 +408,7 @@ declare module 'vue' {
     readonly loginMsgBox: UnwrapRef<typeof import('./composables/message')['loginMsgBox']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly newsDetailStore: UnwrapRef<typeof import('./composables/config')['newsDetailStore']>
     readonly newsListStore: UnwrapRef<typeof import('./composables/config')['newsListStore']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>

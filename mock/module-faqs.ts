@@ -1,7 +1,23 @@
-import type { MockMethod } from 'vite-plugin-mock'
+import type { MockMethod } from './_mock.types'
 import { baseApi } from './_api'
 
 export default [
+    {
+        // 相关推荐
+        url: `/${baseApi}/faqs/relatedRecom`,
+        method: 'get',
+        response: () => {
+            return {
+                code: 200,
+                message: 'ok',
+                data: Array.from({ length: 10 }, (_, index) => ({
+                    id: index + 1,
+                    date: '@date("yyyy-MM-dd")',
+                    title: '@ctitle(10, 30)',
+                })),
+            }
+        },
+    },
     {
         // 列表
         url: `/${baseApi}/faqs/getList`,
@@ -27,5 +43,5 @@ export default [
                 },
             }
         },
-    },
+    } as MockMethod<{ page: number, pageSize: number }>,
 ] as MockMethod[]

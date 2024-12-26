@@ -87,15 +87,15 @@ importers:
       '@lincy/unocss-base-config':
         specifier: ^2.0.0
         version: 2.0.0(@unocss/core@0.65.1)(@unocss/preset-mini@0.64.0)(@unocss/preset-uno@0.65.1)(postcss@8.4.49)(rollup@4.24.0)(vite@6.0.3(@types/node@22.10.1)(jiti@2.3.3)(sass@1.82.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1))(vue@3.5.13(typescript@5.6.3))
-      '@lincy/vite-plugin-mock':
-        specifier: ^3.0.0
-        version: 3.0.0(esbuild@0.23.1)(mockjs@1.1.0)(vite@6.0.3(@types/node@22.10.1)(jiti@2.3.3)(sass@1.82.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1))
       '@types/echarts':
         specifier: ^4.9.22
         version: 4.9.22
       '@types/locutus':
         specifier: ^0.0.8
         version: 0.0.8
+      '@types/mockjs':
+        specifier: ^1.0.10
+        version: 1.0.10
       '@types/node':
         specifier: ^22.10.1
         version: 22.10.1
@@ -1237,13 +1237,6 @@ packages:
 
   '@lincy/utils@0.6.1':
     resolution: {integrity: sha512-WHd6wqNgooZWWLAa36FGPxNcyDX7gQbneHsb4RKU3SXs+nMCMtN6u+kAPKfULYW+FXcMQPiNjdPLiBsvYy9sQQ==}
-
-  '@lincy/vite-plugin-mock@3.0.0':
-    resolution: {integrity: sha512-Pq051ibIaqgdu8bo7X555MkpSZ1zPbapPmkSnYjz9r96EIdGxiTd5V8upvGnyIh4hVtfgVSfCe69kDwRyqz8jQ==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      mockjs: '>=1.1.0'
-      vite: '>=4.0.0'
 
   '@napi-rs/wasm-runtime@0.2.5':
     resolution: {integrity: sha512-kwUxR7J9WLutBbulqg1dfOrMTwhMdXLdcGUhcbCcGwnPLt3gz19uHVdwH1syKVDbE022ZS2vZxOWflFLS0YTjw==}
@@ -5833,22 +5826,6 @@ snapshots:
       - vue
 
   '@lincy/utils@0.6.1': {}
-
-  '@lincy/vite-plugin-mock@3.0.0(esbuild@0.23.1)(mockjs@1.1.0)(vite@6.0.3(@types/node@22.10.1)(jiti@2.3.3)(sass@1.82.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1))':
-    dependencies:
-      '@types/mockjs': 1.0.10
-      bundle-require: 4.2.1(esbuild@0.23.1)
-      chokidar: 3.6.0
-      connect: 3.7.0
-      debug: 4.3.7
-      fast-glob: 3.3.2
-      mockjs: 1.1.0
-      path-to-regexp: 6.3.0
-      picocolors: 1.1.1
-      vite: 6.0.3(@types/node@22.10.1)(jiti@2.3.3)(sass@1.82.0)(terser@5.36.0)(tsx@4.19.2)(yaml@2.6.1)
-    transitivePeerDependencies:
-      - esbuild
-      - supports-color
 
   '@napi-rs/wasm-runtime@0.2.5':
     dependencies:

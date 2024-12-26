@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductListType } from './home.types'
+import type { ProductsListType } from './home.types'
 import { isEmpty } from '@lincy/utils'
 
 defineOptions({
@@ -70,7 +70,7 @@ const { options: _ } = useGlobal(__name__)
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
 
-let data1 = $ref<ProductListType>(productListStore)
+let data1 = $ref<ProductsListType>(productListStore)
 
 const navigation = ref<HTMLElement>()
 function scrollToNav() {
@@ -83,7 +83,7 @@ function scrollToNav() {
 }
 
 async function getData() {
-    const { code, data } = await $api.get<ProductListType>('/home/getList', { page, pageSize })
+    const { code, data } = await $api.get<ProductsListType>('/home/getList', { page, pageSize })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(productListStore.value), data)) {
         data1 = data
         productListStore.value = data

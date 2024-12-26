@@ -1,4 +1,4 @@
-import type { MockMethod } from 'vite-plugin-mock'
+import type { MockMethod } from './_mock.types'
 import { baseApi, getRandomValue } from './_api'
 
 const imgUrl = [
@@ -49,6 +49,22 @@ export default [
         },
     },
     {
+        // 相关推荐
+        url: `/${baseApi}/home/relatedRecom`,
+        method: 'get',
+        response: () => {
+            return {
+                code: 200,
+                message: 'ok',
+                data: Array.from({ length: 10 }, (_, index) => ({
+                    id: index + 1,
+                    date: '@date("yyyy-MM-dd")',
+                    title: '@ctitle(10, 30)',
+                })),
+            }
+        },
+    },
+    {
         // 列表
         url: `/${baseApi}/home/getList`,
         method: 'get',
@@ -62,6 +78,7 @@ export default [
                 data: {
                     list: Array.from({ length: pageSize }, (_, index) => ({
                         id: (page - 1) * pageSize + index + 1,
+                        category: (page - 1) * pageSize + index + 1,
                         imgUrl: getRandomValue(imgUrl),
                         title: '@ctitle(7, 20)',
                         date: '@date("yyyy-MM-dd")',
@@ -74,5 +91,5 @@ export default [
                 },
             }
         },
-    },
+    } as MockMethod<{ page: number, pageSize: number }>,
 ] as MockMethod[]

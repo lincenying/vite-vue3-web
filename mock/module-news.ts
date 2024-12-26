@@ -1,4 +1,4 @@
-import type { MockMethod } from 'vite-plugin-mock'
+import type { MockMethod } from './_mock.types'
 import { baseApi } from './_api'
 
 export default [
@@ -11,6 +11,22 @@ export default [
                 code: 200,
                 message: 'ok',
                 data: Array.from({ length: 4 }, (_, index) => ({
+                    id: index + 1,
+                    date: '@date("yyyy-MM-dd")',
+                    title: '@ctitle(10, 30)',
+                })),
+            }
+        },
+    },
+    {
+        // 相关推荐
+        url: `/${baseApi}/news/relatedRecom`,
+        method: 'get',
+        response: () => {
+            return {
+                code: 200,
+                message: 'ok',
+                data: Array.from({ length: 10 }, (_, index) => ({
                     id: index + 1,
                     date: '@date("yyyy-MM-dd")',
                     title: '@ctitle(10, 30)',
@@ -40,6 +56,29 @@ export default [
                     total: 100,
                     pageSize,
                     currPage: Number(page),
+                },
+            }
+        },
+    } as MockMethod<{ page: number, pageSize: number }>,
+    {
+        // 推荐
+        url: `/${baseApi}/news/detail`,
+        method: 'get',
+        response: () => {
+            return {
+                code: 200,
+                message: 'ok',
+                data: {
+                    id: 1,
+                    title: '@ctitle(10, 20)',
+                    author: '@cname',
+                    date: '@date("yyyy-MM-dd")',
+                    category: '@ctitle(3, 5)',
+                    category_id: '@integer(1, 1000)',
+                    intro: '@cparagraph(10, 15)',
+                    content: '<p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p>',
+                    imgUrl: '@image("800x400", "#4A7BF7", "#FFF", "png", "img")',
+                    views: '@integer(100, 1000)',
                 },
             }
         },

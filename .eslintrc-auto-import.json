@@ -383,6 +383,7 @@
     "casesListStore": true,
     "newsListStore": true,
     "faqsListStore": true,
-    "useSaveScroll": true
+    "useSaveScroll": true,
+    "newsDetailStore": true
   }
 }

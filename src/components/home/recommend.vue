@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductType } from '~/views/home.types'
+import type { ProductsType } from '~/views/home.types'
 import { isEmpty } from '@lincy/utils'
 
 defineOptions({
@@ -30,11 +30,11 @@ defineOptions({
 const __name__ = 'product-recommend'
 const { options: _ } = useGlobal(__name__)
 
-let ls = $(useStorage<ProductType[]>('product-recommend', []))
-let data1 = $ref<ProductType[]>(ls)
+let ls = $(useStorage<ProductsType[]>('product-recommend', []))
+let data1 = $ref<ProductsType[]>(ls)
 
 async function getData() {
-    const { code, data } = await $api.get<ProductType[]>('/home/getRecommend', { })
+    const { code, data } = await $api.get<ProductsType[]>('/home/getRecommend', { })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(ls), data)) {
         data1 = data
         ls = data
