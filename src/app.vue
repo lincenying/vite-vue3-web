@@ -65,8 +65,10 @@ provide(onLoginKey, (payload: boolean) => {
 // 全局组件通信 <===
 
 async function init() {
-    // 防止mock劫持不到, 添加点延迟
-    await sleep(500)
+    if (import.meta.env.VITE_APP_ENV === 'pre-release') {
+        // 防止mock劫持不到, 添加点延迟
+        await sleep(500)
+    }
     await productStore.getCtegory()
     globalStore.setGlobalLoading(false)
 }
