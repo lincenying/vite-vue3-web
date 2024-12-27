@@ -115,9 +115,9 @@ export function useAutoRefresh(fn: AnyFn, timer: number) {
  * 依赖的父级数据加载完成 或者 当前组件已经 mounted
  * @example
  * ```
- * // 不依赖父级组件数据
+ * 不依赖父级组件数据
  * useDataIsLoaded({ init: () => {} })
- * // 依赖父级组件数据 fullData
+ * 依赖父级组件数据 fullData
  * useDataIsLoaded({ fullData, dataHasError, init, initError })
  * ```
  */
@@ -150,7 +150,7 @@ export function useDataIsLoaded<T, E>(payload: LoadedType<T, E>) {
             resolveRef(fullData),
             () => {
                 log('Parent component data has changed')
-                init && init()
+                init && init('watch')
             },
             {
                 deep: true,
@@ -196,4 +196,12 @@ export function useSaveScroll() {
         ls.set(from.fullPath, window.scrollY || 0)
         next()
     })
+}
+
+export function scrollToNav(navigation: Ref<HTMLElement | undefined>, adjust: number = 0) {
+    let top = navigation.value?.getBoundingClientRect().top
+    if (top !== undefined) {
+        top += window.scrollY + adjust
+    }
+    window.scrollTo({ top: top || 0, behavior: 'smooth' })
 }

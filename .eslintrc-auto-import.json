@@ -389,6 +389,7 @@
     "ProductCategory": true,
     "ProductState": true,
     "usePreferredReducedTransparency": true,
-    "useSSRWidth": true
+    "useSSRWidth": true,
+    "scrollToNav": true
   }
 }

@@ -11,19 +11,35 @@
                     <NewsRecommend></NewsRecommend>
                 </div>
                 <div class="main" w-1px ml-24px flex="auto">
-                    <div b-rd-6px mb-24px p-32px bg="hex-fff">
-                        <h1 font-bold text="center hex-202935 28px">{{ data1.title }}</h1>
-                        <div flex="~ justify-center items-center" mt-16px text="hex-8a8a8a">
-                            <i class="i-carbon-user-avatar" w-14px h-14px mr-5px></i>
-                            <span mr-20px>{{ data1.author }}</span>
-                            <i class="i-carbon-time" w-14px h-14px mr-5px></i>
-                            <span mr-20px>{{ data1.date }}</span>
-                            <i class="i-carbon-collapse-categories" w-14px h-14px mr-5px></i>
-                            <span mr-20px>{{ data1.category }}</span>
-                            <span>阅读({{ data1.views }})</span>
-                        </div>
-                        <div class="article-content" text-16px lh-28px text="hex-202935" pt-24px v-html="data1.content"></div>
-                    </div>
+                    <el-skeleton :loading="loading" animated>
+                        <template #template>
+                            <div bg="hex-fff" mb-24px p-32px>
+                                <div flex="~ items-center col">
+                                    <el-skeleton-item variant="text" class="!w-1/2 !h-44px" />
+                                    <el-skeleton-item variant="text" class="!w-50% !h-21px mt-16px" />
+                                </div>
+                                <div v-for="i in 6" :key="i" mt-21px>
+                                    <el-skeleton-item variant="text" class="!h-21px ml-32px !w-80%" />
+                                    <el-skeleton-item v-for="item in 4" :key="`${i}-${item}`" variant="text" class="!h-21px mt-6px" />
+                                </div>
+                            </div>
+                        </template>
+                        <template #default>
+                            <div v-if="data1" b-rd-6px mb-24px p-32px bg="hex-fff">
+                                <h1 font-bold text="center hex-202935 28px">{{ data1.title }}</h1>
+                                <div flex="~ justify-center items-center" mt-16px text="hex-8a8a8a">
+                                    <i class="i-carbon-user-avatar" w-14px h-14px mr-5px></i>
+                                    <span mr-20px>{{ data1.author }}</span>
+                                    <i class="i-carbon-time" w-14px h-14px mr-5px></i>
+                                    <span mr-20px>{{ data1.date }}</span>
+                                    <i class="i-carbon-collapse-categories" w-14px h-14px mr-5px></i>
+                                    <span mr-20px>{{ data1.category }}</span>
+                                    <span>阅读({{ data1.views }})</span>
+                                </div>
+                                <div class="article-content" pt-24px text="hex-202935 16px" lh-28px v-html="data1.content"></div>
+                            </div>
+                        </template>
+                    </el-skeleton>
                     <OtherRelatedRecom column="faqs"></OtherRelatedRecom>
                 </div>
             </div>
@@ -51,13 +67,6 @@ const route = useRoute()
 let data1 = $ref<NewsType>(newsDetailStore)
 
 const navigation = ref<HTMLElement>()
-function scrollToNav() {
-    let top = navigation.value?.getBoundingClientRect().top
-    if (top !== undefined) {
-        top += window.scrollY - 80
-    }
-    window.scrollTo({ top: top || 0, behavior: 'smooth' })
-}
 
 async function getData() {
     const { code, data } = await $api.get<NewsType>('/news/detail', { id: route.query.id })
@@ -68,11 +77,28 @@ async function getData() {
     }
 }
 
-watch(() => route.query.id, () => {
-    getData()
-    scrollToNav()
-}, {
-    immediate: true,
+const [loading, toggleLoading] = useToggle(false)
+
+async function init(isWatch: boolean = false) {
+    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
+    await Promise.all([getData()])
+    stop()
+    if (isWatch)
+        scrollToNav(navigation, -80)
+    toggleLoading(false)
+}
+
+const fullData = computed(() => {
+    return {
+        id: route.query.id,
+    }
+})
+
+useDataIsLoaded({
+    fullData,
+    dataHasError: false,
+    init,
+    initError: () => {},
 })
 
 useSaveScroll()

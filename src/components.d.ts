@@ -14,6 +14,8 @@ declare module 'vue' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
+    ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem']
     EmptyComponents: typeof import('./components/empty-components.vue')['default']
     GlobalDigital: typeof import('./components/global/digital.tsx')['default']
     GlobalFooter: typeof import('./components/global/footer.vue')['default']

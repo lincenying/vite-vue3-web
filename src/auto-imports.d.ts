@@ -116,6 +116,7 @@ declare global {
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const routerKey: typeof import('./composables/provide')['routerKey']
+  const scrollToNav: typeof import('./composables/index')['scrollToNav']
   const setupPinia: typeof import('./stores/index')['setupPinia']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
@@ -461,6 +462,7 @@ declare module 'vue' {
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly routerKey: UnwrapRef<typeof import('./composables/provide')['routerKey']>
+    readonly scrollToNav: UnwrapRef<typeof import('./composables/index')['scrollToNav']>
     readonly setupPinia: UnwrapRef<typeof import('./stores/index')['setupPinia']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>

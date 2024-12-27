@@ -12,38 +12,60 @@
                     <NewsRecommend></NewsRecommend>
                 </div>
                 <div class="main" w-1px ml-24px flex="auto">
-                    <ul class="home-ul" flex="~ wrap justify-between">
-                        <li
-                            v-for="(item, index) in data1.list" :key="index"
-                            w="[calc((100%-48px)/3)]" mb-24px bg="hex-fff"
-                        >
-                            <router-link :to="`/home/detail?id=${item.id}`" relative block pt="2/3" b-rd-6px overflow-hidden>
-                                <img
-                                    :alt="item.title"
-                                    :src="item.imgUrl"
-                                    absolute top-0 left-0 w="full" h="full"
-                                    object-cover scale="100" transition="all duration-.3s"
-                                >
-                            </router-link>
-                            <div p="24px t-16px">
-                                <router-link to="/">
-                                    <h2 text="15px center" lh-22px font-700 line-2>{{ item.title }}</h2>
-                                </router-link>
-                                <div max-h-26px mt-12px overflow-hidden text-center lh-21px>
-                                    <router-link
-                                        v-for="(sub_item, sub_index) in item.tag" :key="sub_index"
-                                        inline-block mr-8px p="x-8px y-4px" b-rd-4px bg="hex-f3f5f7" un-text="hex-8a8a8a 12px"
-                                        :to="`/?tag=${sub_item}`" rel="tag"
-                                    >
-                                        {{ sub_item }}
-                                    </router-link>
+                    <el-skeleton
+                        flex="~ wrap justify-between"
+                        :loading="loading"
+                        animated
+                        :count="9"
+                    >
+                        <template #template>
+                            <div w="[calc((100%-48px)/3)]" bg="hex-fff" mb-24px>
+                                <el-skeleton-item variant="image" class="!w-full !h-200px" />
+                                <div p-14px>
+                                    <el-skeleton-item variant="text" class="w-1/2 !h-44px" />
+                                    <div flex items-center justify-items-between mt-16px h-29px>
+                                        <el-skeleton-item variant="text" class="!w-30% !h-29px mr-16px" />
+                                        <el-skeleton-item variant="text" class="!w-30% !h-29px mr-16px" />
+                                        <el-skeleton-item variant="text" class="!w-30% !h-29px" />
+                                    </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
-                    <div class="page" flex="~ justify-center" mb-24px>
-                        <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
-                    </div>
+                        </template>
+                        <template #default>
+                            <ul class="home-ul" flex="~ wrap justify-between">
+                                <li
+                                    v-for="(item, index) in data1.list" :key="index"
+                                    w="[calc((100%-48px)/3)]" mb-24px bg="hex-fff"
+                                >
+                                    <router-link :to="`/home/detail?id=${item.id}`" relative block pt="2/3" b-rd-6px overflow-hidden>
+                                        <img
+                                            :alt="item.title"
+                                            :src="item.imgUrl"
+                                            absolute top-0 left-0 w="full" h="full"
+                                            object-cover scale="100" transition="all duration-.3s"
+                                        >
+                                    </router-link>
+                                    <div p="24px t-16px">
+                                        <router-link to="/">
+                                            <h2 text="15px center" lh-22px font-700 line-2>{{ item.title }}</h2>
+                                        </router-link>
+                                        <div max-h-26px mt-12px overflow-hidden text-center lh-21px>
+                                            <router-link
+                                                v-for="(sub_item, sub_index) in item.tag" :key="sub_index"
+                                                inline-block mr-8px p="x-8px y-4px" b-rd-4px bg="hex-f3f5f7" un-text="hex-8a8a8a 12px"
+                                                :to="`/?tag=${sub_item}`" rel="tag"
+                                            >
+                                                {{ sub_item }}
+                                            </router-link>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="page" flex="~ justify-center" mb-24px>
+                                <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
+                            </div>
+                        </template>
+                    </el-skeleton>
                 </div>
             </div>
         </div>
@@ -51,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductsListType } from './home.types'
+import type { InitType, ProductsListType } from './home.types'
 import { isEmpty } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
@@ -69,13 +91,6 @@ const pageSize = $ref<number>(12)
 let data1 = $ref<ProductsListType>(productListStore)
 
 const navigation = ref<HTMLElement>()
-function scrollToNav() {
-    let top = navigation.value?.getBoundingClientRect().top
-    if (top !== undefined) {
-        top += window.scrollY - 80
-    }
-    window.scrollTo({ top: top || 0, behavior: 'smooth' })
-}
 
 const route = useRoute()
 
@@ -88,21 +103,38 @@ async function getData() {
     }
 }
 
-async function currentChange(newPage: number) {
-    page = newPage
-    await getData()
-    scrollToNav()
+const [loading, toggleLoading] = useToggle(false)
+
+async function init(action: InitType = 'init') {
+    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
+    if (action === 'watch' || action === 'change-page') {
+        scrollToNav(navigation, -80)
+    }
+    if (action === 'watch') {
+        page = 1
+    }
+    await Promise.all([getData()])
+    stop()
+    toggleLoading(false)
 }
 
-watch([
-    () => route.query.category,
-    () => route.query.tag,
-], () => {
-    page = 1
-    getData()
-    scrollToNav()
-}, {
-    immediate: true,
+async function currentChange(newPage: number) {
+    page = newPage
+    init('change-page')
+}
+
+const fullData = computed(() => {
+    return {
+        category: route.query.category,
+        tag: route.query.tag,
+    }
+})
+
+useDataIsLoaded({
+    fullData,
+    dataHasError: false,
+    init,
+    initError: () => {},
 })
 
 useSaveScroll()
