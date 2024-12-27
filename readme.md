@@ -73,6 +73,135 @@ pnpm lint:css # css 检测并修复
 
 ```
 
+## 环境变量
+
+预留4套环境变量, 具体参数可查看根目录的 `.env.xxx`, 其中 `development` 为开发环境, `test, staging, production` 依次为 `测试环境, 预发布环境, 正式环境`
+根据自己需要, 启动/编译不同的环境
+
+## 自动引入UI库组件/项目组件/函数等
+
+项目已经配置了`unplugin-auto-import`和`unplugin-vue-components`
+前者能自动引入vue, vue-router, vueuse等提供的方法, 而无需一遍遍的`import`
+后者能自动引入UI组件, 及项目被定义的组件, 也不用一遍遍的`import`
+详细配置见: `vite.config.components.ts`
+相关文档见:
+https://github.com/antfu/unplugin-auto-import#readme
+https://github.com/antfu/unplugin-vue-components#readme
+
+## Pinia 状态管理
+
+vue 官方出品的, 比vuex更好用的状态管理
+使用方法:
+在pinia文件夹下,新建一个ts文件, 如: `use-global-store.ts`
+里面代码如下:
+
+```ts
+import type { GlobalState } from './pinia.types'
+
+const useStore = defineStore('globalStore', () => {
+    const state: GlobalState = reactive({
+        globalLoading: true,
+        routerLoading: false,
+    })
+
+    const setGlobalLoading = (payload: boolean) => {
+        state.globalLoading = payload
+    }
+    const setRouterLoading = (payload: boolean) => {
+        state.routerLoading = payload
+    }
+
+    return {
+        ...toRefs(state),
+        setGlobalLoading,
+        setRouterLoading,
+    }
+})
+
+export default useStore
+```
+
+那么在需要用到该状态管理的地方, 只需要
+
+```ts
+const userStore = useGlobalStore()
+const { globalLoading } = storeToRefs(userStore)
+userStore.setGlobalLoading(true)
+```
+
+即可, 因为配置了`unplugin-auto-import`, 所以根本无需要`import`, 你只需要直接把文件名改成驼峰的方式, 直接当函数使用即可
+注意: 直接用文件名当函数名, 只有代码是用`export default`导出时可用, 如果是用`export const xxx`, `export function xxx {}` 这样导出的, 那么直接使用xxx作为方法名即可
+具体可以看`src/auto-imports.d.ts`为你生成了那些方法, 这里的方法都可以直接使用, 而无需`import`
+
+## 路由
+
+放在`views`文件夹下的`vue`文件, 都会自动加入路由中, 根据你自己的使用情况, 可以修改`src/router/index.ts`以适配
+是使用`hash`还是`history`模式, 也可以在上面的文件中修改
+
+## Api封装
+
+`src/composables/fetch.ts`封装了`get, post, put, delete`4中常用的方法, 分别对应4种method, 而`$api`为全局方法, 可以在任何`.vue`页面, 直接使用`$api.get/post/put/delete`
+接口默认判断code=200为正常返回, 如果后端接口不是用code作为判断, 那么需要在`src/composables/fetch.ts`做对应修改
+如:
+
+```ts
+let detail: NullAble<Article> = null
+async function getDetail() {
+    const { code, data } = await $api.get<Article>('article/detail', {})
+    if (code === 200) {
+        detail = data
+    }
+}
+
+getDetail()
+```
+
+## vite 相关配置文件
+
+- vite.config.ts 主配置文件
+- vite.config.components.ts 自动引入组件配置文件
+- vite.config.build.ts 打包/开发环境配置文件
+- vite.config.css.ts css相关配置文件
+- vite.config.macros.ts 宏配置文件
+
+## 开发环境配置proxy跨域
+
+```
+{
+    server: {
+        port: 7771,
+        proxy: {
+            '/api': {
+                target: 'https://php.mmxiaowu.com',
+                changeOrigin: true,
+                rewrite: (path: string) => path.replace(/^\/api/, '/api'),
+            },
+        },
+    },
+}
+```
+
+详见: `vite.config.build.ts`
+
+## Mock
+
+在`mock`文件夹, 创建ts文件, 按mock规则添加接口即可, 详情见: `mock/module-index.ts`
+相关文档见:
+https://github.com/anncwb/vite-plugin-mock/tree/master/#readme
+
+## Unocss
+
+unocss是一个及时/按需/原子化的css引擎, 项目中也做了相关配置, 可直接使用
+配置见:
+https://github.com/lincenying/unocss-base-config/blob/main/src/uno.web.config.ts
+官方文档见:
+https://unocss.dev/
+
+## eslint/stylelint/prettierrc/vue-tsc
+
+根目录下的`eslint.config.ts`、`stylelint.config.js`、`.prettier`内置了 lint 规则，帮助你规范地开发代码，有助于提高团队的代码质量和协作性，可以根据团队的规则进行修改
+注意: `prettier`只在编辑器层面, 在`eslint`中并没有添加`prettier`插件
+
 ## License
 
 [MIT]

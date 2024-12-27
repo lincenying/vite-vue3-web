@@ -47,14 +47,14 @@ import './assets/scss/style.scss'
 
 console.log(`VITE_APP_ENV: ${import.meta.env.VITE_APP_ENV}`)
 
+// test mock server
+if (import.meta.env.VITE_APP_ENV === 'pre-release') {
+    import('./mockProdServer').then(({ setupProdMockServer }) => {
+        setupProdMockServer()
+    })
+}
+
 const app = createApp(App)
 const head = createHead()
 
 setupPinia(app).use(head).use(router).use(globalPlugin).mount('#app')
-
-// test mock server
-// if (import.meta.env.VITE_APP_ENV === 'test') {
-//     import('./mockProdServer').then(({ setupProdMockServer }) => {
-//         setupProdMockServer()
-//     })
-// }

@@ -1,9 +1,8 @@
 import type { MockMethod } from 'vite-plugin-mock'
 
-// @ts-expect-error 1111
 import { createProdMockServer } from 'vite-plugin-mock/client'
 
-const modules: Record<string, any> = import.meta.glob('../mock/*.mjs', { eager: true })
+const modules: Record<string, any> = import.meta.glob('../mock/*.ts', { eager: true })
 
 const _mockModules: Array<MockMethod> = []
 Object.keys(modules).forEach((key) => {

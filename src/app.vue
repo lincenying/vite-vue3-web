@@ -23,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { sleep } from '@lincy/utils'
 import pageLogin from '@/login.vue'
 
 defineOptions({
@@ -64,6 +65,8 @@ provide(onLoginKey, (payload: boolean) => {
 // 全局组件通信 <===
 
 async function init() {
+    // 防止mock劫持不到, 添加点延迟
+    await sleep(500)
     await productStore.getCtegory()
     globalStore.setGlobalLoading(false)
 }
