@@ -54,7 +54,12 @@ if (import.meta.env.VITE_APP_ENV === 'pre-release') {
     })
 }
 
-const app = createApp(App)
 const head = createHead()
 
+const app = createApp(App)
+
 setupPinia(app).use(head).use(router).use(globalPlugin).mount('#app')
+
+// router.isReady().then(() => {
+//     app.mount('#app')
+// })

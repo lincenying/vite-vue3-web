@@ -12,6 +12,8 @@
 }
 
 .body {
+    min-height: calc(100vh - 80px - 96px);
+
     &[v-cloak] {
         display: none;
     }

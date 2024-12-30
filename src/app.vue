@@ -5,6 +5,7 @@
                 <globalHeader page="home" />
                 <router-view v-slot="{ Component }" class="body">
                     <transition
+                        v-if="Component"
                         name="fade" mode="out-in"
                         @before-enter="handleBeforeEnter"
                         @after-enter="handleAfterEnter"
@@ -14,6 +15,7 @@
                             <component :is="Component" />
                         </keep-alive>
                     </transition>
+                    <OtherLoading v-else></OtherLoading>
                 </router-view>
                 <globalFooter />
             </template>
@@ -24,6 +26,8 @@
 
 <script setup lang="ts">
 import { sleep } from '@lincy/utils'
+
+import OtherLoading from '@/components/other/loading.vue'
 import pageLogin from '@/login.vue'
 
 defineOptions({
@@ -81,6 +85,6 @@ function handleAfterLeave() {
 }
 
 onMounted(async () => {
-    init()
+    await init()
 })
 </script>

@@ -76,7 +76,7 @@ export default [
                     category: '@ctitle(3, 5)',
                     category_id: '@integer(1, 1000)',
                     intro: '@cparagraph(10, 15)',
-                    content: '<p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p>',
+                    content: '<p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p><p>@cparagraph(10, 15)</p>',
                     imgUrl: '@image("800x400", "#4A7BF7", "#FFF", "png", "img")',
                     views: '@integer(100, 1000)',
                 },
