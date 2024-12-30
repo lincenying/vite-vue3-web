@@ -1,5 +1,5 @@
 <template>
-    <div class="global-wrap index-wrap">
+    <div v-loading="loading" class="global-wrap index-wrap">
         <OtherTopBanner title="产品展示" intro="这是一段描述文字，可以自定义你想要的文字" :img="topBannerImg"></OtherTopBanner>
         <div ref="navigation" class="navigation" flex="~ justify-center items-center" h-42px bg-hex-fff>
             <div flex-auto max-w-1293px text-hex-8a8a8a lt-m1360="mx-24px">当前位置：<router-link to="/">首页</router-link> » 产品展示</div>
@@ -8,8 +8,10 @@
             <div flex="~ auto justify-between" max-w-1293px>
                 <div class="sidebar" w-320px>
                     <HomeCategory :category-id="categoryId"></HomeCategory>
-                    <HomeRecommend></HomeRecommend>
-                    <NewsRecommend></NewsRecommend>
+                    <el-affix :offset="104">
+                        <HomeRecommend></HomeRecommend>
+                        <NewsRecommend></NewsRecommend>
+                    </el-affix>
                 </div>
                 <div class="main" w-1px ml-24px flex="auto">
                     <el-skeleton

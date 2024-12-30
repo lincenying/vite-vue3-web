@@ -7,8 +7,10 @@
         <div flex="~ justify-center" mt-24px lt-m1360="mx-24px">
             <div flex="~ auto justify-between" max-w-1293px>
                 <div class="sidebar" w-320px>
-                    <HomeRecommend></HomeRecommend>
-                    <NewsRecommend></NewsRecommend>
+                    <el-affix :offset="104">
+                        <HomeRecommend></HomeRecommend>
+                        <NewsRecommend></NewsRecommend>
+                    </el-affix>
                 </div>
                 <div class="main" w-1px ml-24px flex="auto">
                     <el-skeleton :loading="loading" animated>
