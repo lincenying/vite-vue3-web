@@ -22,9 +22,6 @@ defineOptions({
     name: 'NewsRecommend',
 })
 
-const __name__ = 'news-recommend'
-const { options: _ } = useGlobal(__name__)
-
 let ls = $(useStorage<NewsType[]>('news-recommend', []))
 let data1 = $ref<NewsType[]>(ls)
 

@@ -27,9 +27,6 @@ defineOptions({
     name: 'ProductRecommend',
 })
 
-const __name__ = 'product-recommend'
-const { options: _ } = useGlobal(__name__)
-
 let ls = $(useStorage<ProductsType[]>('product-recommend', []))
 let data1 = $ref<ProductsType[]>(ls)
 

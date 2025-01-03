@@ -7,7 +7,7 @@
         <div flex="~ justify-center" mt-24px lt-m1360="mx-24px">
             <div flex="~ auto justify-between" max-w-1293px>
                 <div class="sidebar" w-320px>
-                    <HomeCategory :category-id="categoryId"></HomeCategory>
+                    <HomeCategory :category-id="category"></HomeCategory>
                     <el-affix :offset="104">
                         <HomeRecommend></HomeRecommend>
                         <NewsRecommend></NewsRecommend>
@@ -96,7 +96,6 @@ const navigation = ref<HTMLElement>()
 
 const route = useRoute()
 
-const categoryId = ref<number>(route.query.category as unknown as number)
 async function getData() {
     const { code, data } = await $api.get<ProductsListType>('/home/getList', { page, pageSize, ...route.query })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(productListStore.value), data)) {
@@ -125,11 +124,22 @@ async function currentChange(newPage: number) {
     init('change-page')
 }
 
+const category = $(useRouteQuery<number>('category'))
+const tag = $(useRouteQuery<string>('tag'))
+
 const fullData = computed(() => {
     return {
-        category: route.query.category,
-        tag: route.query.tag,
+        category,
+        tag,
     }
+})
+
+emitter.on('change-category', (newCategoryId) => {
+    console.log('%c[newCategoryId] >> ', 'color: red', newCategoryId)
+})
+
+onUnmounted(() => {
+    emitter.off('change-category')
 })
 
 useDataIsLoaded({

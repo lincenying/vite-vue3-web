@@ -28,6 +28,7 @@ export default (): PluginOption[] => ([
                 'pinia': ['defineStore', 'storeToRefs'],
                 'vue-router': ['createRouter', 'createWebHashHistory'],
                 '@unhead/vue': ['createHead', 'useHead'],
+                '@vueuse/router': ['useRouteHash', 'useRouteParams', 'useRouteQuery'],
             },
         ],
         dts: 'src/auto-imports.d.ts',

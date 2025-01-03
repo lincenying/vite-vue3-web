@@ -26,6 +26,14 @@ export default (): PluginOption[] => ([
      * defineProps
      * @description 使用 $defineProps 可以正确地解构 props 的类型
      * @see https://vue-macros.sxzz.moe/zh-CN/macros/define-props.html
+     * @example
+     * ```ts
+     * const { foo } = $defineProps<{
+     *     foo: string[]
+     * }>()
+     *
+     * const fooRef = $$(foo)
+     * ```
      */
     DefineProps(),
     /**

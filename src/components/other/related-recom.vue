@@ -56,9 +56,6 @@ const { column, categoryId } = defineProps<{
     categoryId?: number
 }>()
 
-const __name__ = 'related-recom'
-const { options: _ } = useGlobal(__name__)
-
 const productsRelatedRecom = ref<ProductsType[]>([])
 const casesRelatedRecom = ref<CasesType[]>([])
 const newsRelatedRecom = ref<NewsType[]>([])

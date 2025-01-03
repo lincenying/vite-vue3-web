@@ -6,7 +6,7 @@
                 <li
                     v-for="(item, index) in category" :key="index"
                     pl-22px transition="all duration-.3s" hover="bg-hex-f3f5f7 b-rd-4px"
-                    :class="{ 'cat-list-active': item.id === categoryId }"
+                    :class="{ 'cat-list-active': item.id === Number(categoryId) }"
                 >
                     <router-link block text-14px lh-32px hover="text-hex-007bff" :to="`/?category=${item.id}`">{{ item.title }}</router-link>
                 </li>
@@ -25,9 +25,10 @@ const props = defineProps<{
 }>()
 const { categoryId } = toRefs(props)
 
-const __name__ = 'product-category'
-const { options: _ } = useGlobal(__name__)
-
 const productStore = useProductStore()
 const { category } = storeToRefs(productStore)
+
+setTimeout(() => {
+    emitter.emit('change-category', category.value[0].id)
+}, 2000)
 </script>

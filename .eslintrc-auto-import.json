@@ -390,6 +390,10 @@
     "ProductState": true,
     "usePreferredReducedTransparency": true,
     "useSSRWidth": true,
-    "scrollToNav": true
+    "scrollToNav": true,
+    "emitter": true,
+    "useRouteHash": true,
+    "useRouteParams": true,
+    "useRouteQuery": true
   }
 }

@@ -59,19 +59,18 @@ defineOptions({
 })
 
 const title = ref('')
-
 useHead({
     title,
 })
 
-const route = useRoute()
+const id = $(useRouteQuery<string>('id'))
 
 let data1 = $ref<NewsType>(newsDetailStore)
 
 const navigation = ref<HTMLElement>()
 
 async function getData() {
-    const { code, data } = await $api.get<NewsType>('/news/detail', { id: route.query.id })
+    const { code, data } = await $api.get<NewsType>('/news/detail', { id })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(newsDetailStore.value), data)) {
         data1 = data
         title.value = data.title
@@ -92,7 +91,7 @@ async function init(isWatch: boolean = false) {
 
 const fullData = computed(() => {
     return {
-        id: route.query.id,
+        id,
     }
 })
 

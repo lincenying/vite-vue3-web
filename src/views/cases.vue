@@ -111,10 +111,13 @@ async function currentChange(newPage: number) {
     init('change-page')
 }
 
+const category = $(useRouteQuery<number>('category'))
+const tag = $(useRouteQuery<string>('tag'))
+
 const fullData = computed(() => {
     return {
-        category: route.query.category,
-        tag: route.query.tag,
+        category,
+        tag,
     }
 })
 

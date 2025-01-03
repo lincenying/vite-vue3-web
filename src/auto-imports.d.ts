@@ -50,6 +50,7 @@ declare global {
   const downloadByUrl: typeof import('./composables/download')['downloadByUrl']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
+  const emitter: typeof import('./composables/emitter')['default']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const faqsListStore: typeof import('./composables/config')['faqsListStore']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -270,6 +271,9 @@ declare global {
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
+  const useRouteHash: typeof import('@vueuse/router')['useRouteHash']
+  const useRouteParams: typeof import('@vueuse/router')['useRouteParams']
+  const useRouteQuery: typeof import('@vueuse/router')['useRouteQuery']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSSRWidth: typeof import('@vueuse/core')['useSSRWidth']
   const useSaveScroll: typeof import('./composables/index')['useSaveScroll']
@@ -397,6 +401,7 @@ declare module 'vue' {
     readonly downloadByUrl: UnwrapRef<typeof import('./composables/download')['downloadByUrl']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly emitter: UnwrapRef<typeof import('./composables/emitter')['default']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly faqsListStore: UnwrapRef<typeof import('./composables/config')['faqsListStore']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
@@ -615,6 +620,9 @@ declare module 'vue' {
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
+    readonly useRouteHash: UnwrapRef<typeof import('@vueuse/router')['useRouteHash']>
+    readonly useRouteParams: UnwrapRef<typeof import('@vueuse/router')['useRouteParams']>
+    readonly useRouteQuery: UnwrapRef<typeof import('@vueuse/router')['useRouteQuery']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSSRWidth: UnwrapRef<typeof import('@vueuse/core')['useSSRWidth']>
     readonly useSaveScroll: UnwrapRef<typeof import('./composables/index')['useSaveScroll']>
