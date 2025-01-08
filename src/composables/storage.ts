@@ -4,7 +4,7 @@ import type { ProductsListType } from '~/views/home.types'
 import type { NewsListType, NewsType } from '~/views/news.types'
 import { StorageSerializers } from '@vueuse/core'
 
-export const userToken = useStorage('user-token', '')
+export const userStorage = useStorage<Nullable<UserState>>('__user__', null, undefined, { serializer: StorageSerializers.object })
 
 export const productListStore = useStorage<ProductsListType>('product-list', null, undefined, { serializer: StorageSerializers.object })
 export const casesListStore = useStorage<CasesListType>('cases-list', null, undefined, { serializer: StorageSerializers.object })

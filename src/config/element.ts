@@ -14,8 +14,10 @@ function install(app: App) {
     app.config.globalProperties.$notice = _ElNotification
     return app
 }
-export default install
+
 export const ElLoading = _ElLoading
 export const ElMessage = _ElMessage
 export const ElMessageBox = _ElMessageBox
 export const ElNotification = _ElNotification
+
+export default install

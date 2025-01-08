@@ -70,18 +70,20 @@ declare interface ApiType {
 }
 
 declare interface Window {
-    _designWidth: number
-    _designHeight: number
-    _designMultiple: number
-    _minWidth: number
-    _minWindow: string
-    _fontSize: number
     config: {
         timer: Objable<number>
     }
     $$lock?: boolean
     $$api: ApiType
-    $$myChart: Nullable<Obj<import('echarts').ECharts>>
     $$time: NodeJS.Timeout
     axios: import('axios').AxiosStatic
+}
+
+declare interface ImportMeta {
+    env: {
+        NODE_ENV: 'development' | 'production'
+        VITE_APP_ENV: 'development' | 'production' | 'pre-release' | 'test'
+        VITE_APP_API: string
+        VITE_APP_API_DOMAIN: string
+    }
 }

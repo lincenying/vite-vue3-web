@@ -5,7 +5,7 @@ import { acceptHMRUpdate } from 'pinia'
 
 const lsKey = '__product__'
 
-let ls1 = $(useStorage<ProductState['category']>(`${lsKey}1`, null, localStorage, { serializer: StorageSerializers.object }))
+let ls1 = $(useStorage<ProductState['category']>(`${lsKey}category`, null, localStorage, { serializer: StorageSerializers.object }))
 
 const usePiniaStore = defineStore('productStore', () => {
     const state: ProductState = reactive({

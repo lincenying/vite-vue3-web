@@ -1,9 +1,9 @@
 <template>
     <section class="login-page">
         <div class="login-box">
-            <div class="title">管理后台</div>
+            <div class="title">用户登录</div>
             <div class="login-form">
-                <el-input v-model="form.username" size="small" placeholder="请输入用户名" @keyup.enter="handleLogin">
+                <el-input v-model="form.name" size="small" placeholder="请输入用户名" @keyup.enter="handleLogin">
                     <template #prepend>用户名</template>
                 </el-input>
                 <el-input v-model="form.password" size="small" type="password" placeholder="请输入密码" @keyup.enter="handleLogin">
@@ -41,27 +41,29 @@ const onLogin = inject(onLoginKey, () => {})
 const [loading, toggleLoading] = useToggle(false)
 
 const form = reactive({
-    username: '',
-    password: '',
-    verifyCode: '',
-    rememberMe: 'on',
+    name: 'admin',
+    password: '123456',
 })
 
+async function login(params: { name: string, password: string }) {
+    const { code, data } = await $api.post<{ token: string }>('/user/login', params)
+    if (code === 200 && data) {
+        return data.token
+    }
+    return null
+}
+
 async function handleLogin() {
-    if (!form.username || !form.password) {
+    if (!form.name || !form.password) {
         ctx.$message.error('请输入用户名密码!')
         return
     }
     const config = {
-        username: form.username.trim(),
+        name: form.name.trim(),
         password: form.password,
-        verifyCode: form.verifyCode,
-        rememberMe: form.rememberMe,
     }
     toggleLoading(true)
-    setTimeout(() => {
-        toggleLoading(false)
-        onLogin(config)
-    }, 500)
+    const token = await login(config)
+    onLogin(token)
 }
 </script>

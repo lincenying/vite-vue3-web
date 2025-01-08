@@ -3,7 +3,6 @@
  */
 
 /* eslint-disable no-extend-native */
-
 Number.prototype.toFixed = function (n, toNumber) {
     if (n > 20 || n < 0) {
         throw new RangeError('toFixed() digits argument must be between 0 and 20')

@@ -38,6 +38,11 @@ defineOptions({
 const globalStore = useGlobalStore()
 const { globalLoading } = storeToRefs(globalStore)
 
+const userStore = useUserStore()
+const { token } = storeToRefs(userStore)
+
+const needLogin = computed(() => !token.value)
+
 const productStore = useProductStore()
 // const tmpCount = computed(() => globalStore.counter)
 // 监听状态变化
@@ -59,11 +64,9 @@ globalStore.$subscribe((mutation, state) => {
 
 const cacheComponents = ref('abc')
 
-const [needLogin, toggledLogin] = useToggle(false)
-
 // 全局组件通信 ===>
-provide(onLoginKey, (payload: boolean) => {
-    toggledLogin(false)
+provide(onLoginKey, (payload: string) => {
+    userStore.setToken(payload)
     console.log('payload :>> ', payload)
 })
 // 全局组件通信 <===

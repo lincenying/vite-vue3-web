@@ -34,7 +34,9 @@ export default (): PluginOption[] => ([
         dts: 'src/auto-imports.d.ts',
         dirs: ['src/components', 'src/composables', 'src/stores', 'src/echarts'],
 
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+            ElementPlusResolver(),
+        ],
         defaultExportByFilename: false,
         vueTemplate: true,
     }),
@@ -50,7 +52,9 @@ export default (): PluginOption[] => ([
             /\.md$/, // .md
         ],
         extensions: ['vue', 'tsx', 'jsx'],
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+            ElementPlusResolver(),
+        ],
         dts: 'src/components.d.ts',
         directoryAsNamespace: true,
     }),

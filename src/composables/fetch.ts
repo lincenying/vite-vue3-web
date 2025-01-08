@@ -1,7 +1,8 @@
 import type { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
+import { userStorage } from './storage'
 
-import { userToken } from './config'
+const userStore = useUserStore(piniaInit)
 
 const headers = {
     'X-Requested-With': 'XMLHttpRequest',
@@ -25,42 +26,52 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     response => response,
-    error => Promise.resolve(error.response || error),
+    (error) => {
+        const response = {} as AxiosResponse
+        response.config = error.config
+        response.data = null
+        response.headers = error.config.headers
+        response.status = error.code
+        response.statusText = error.message
+        response.request = error.request
+        return Promise.resolve(response)
+    },
 )
 
 function checkStatus(response: AxiosResponse): ResponseData<any> {
-    if (response) {
-        if (response.status === 200 || response.status === 304) {
-            return response.data
-        }
-        if (response.status === 401) {
-            return {
-                code: 401,
-                info: response.statusText || response.toString(),
-                data: response.statusText || response.toString(),
-                message: `您还没有登录, 或者登录超时!`,
+    if (response.status === 200 || response.status === 304) {
+        return response.data
+    }
+    if (response.status === 401) {
+        return {
+            code: 401,
+            info: response.statusText || response.toString(),
+            data: response.statusText || response.toString(),
+            message: `您还没有登录, 或者登录超时!`,
 
-            }
         }
     }
-
     return {
         code: -404,
         info: response.statusText || response.toString(),
         data: response.statusText || response.toString(),
-        message: `接口返回数据错误, 错误代码: ${response.status}`,
+        message: `接口返回数据错误, 错误代码: ${response.status || '未知'}`,
     }
 }
 
 function checkCodeFn(data: ResponseData<any>) {
     const code = [0, 200, 1000]
     if (data.code === 401) {
-        userToken.value = ''
-        const pathname = encodeURIComponent(window.location.pathname)
-        if (!window.$$lock) {
-            window.$$lock = true
-            loginMsgBox('当前登录状态已失效, 请重新登录', pathname)
+        userStorage.value = {
+            info: {},
+            token: '',
         }
+        // const pathname = encodeURIComponent(window.location.pathname)
+        // if (!window.$$lock) {
+        //     window.$$lock = true
+        //     loginMsgBox('当前登录状态已失效, 请重新登录', pathname)
+        // }
+        userStore.setToken('')
     }
     else if (!code.includes(Number(data.code))) {
         showMsg(data.message)
@@ -135,8 +146,8 @@ const api: ApiType = {
             method,
             url,
         }
-        if (userToken.value) {
-            (config.headers as AxiosHeaders).Authorization = `Bearer ${userToken.value}`
+        if (userStorage.value && userStorage.value.token) {
+            (config.headers as AxiosHeaders).Authorization = `Bearer ${userStorage.value.token}`
         }
 
         if (method === 'get') {

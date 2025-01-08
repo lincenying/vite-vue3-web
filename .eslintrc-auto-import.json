@@ -394,6 +394,10 @@
     "emitter": true,
     "useRouteHash": true,
     "useRouteParams": true,
-    "useRouteQuery": true
+    "useRouteQuery": true,
+    "onElementRemoval": true,
+    "UserState": true,
+    "useUserStore": true,
+    "userStorage": true
   }
 }

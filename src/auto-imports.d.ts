@@ -12,7 +12,7 @@ declare global {
   const ElMessage: typeof import('element-plus/es')['ElMessage']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
-  const casesListStore: typeof import('./composables/config')['casesListStore']
+  const casesListStore: typeof import('./composables/storage')['casesListStore']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -52,10 +52,10 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const emitter: typeof import('./composables/emitter')['default']
   const extendRef: typeof import('@vueuse/core')['extendRef']
-  const faqsListStore: typeof import('./composables/config')['faqsListStore']
+  const faqsListStore: typeof import('./composables/storage')['faqsListStore']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const globalStoreWithout: typeof import('./stores/use-global-store')['globalStoreWithout']
+  const globalStoreWithout: typeof import('./stores/use-user-store')['globalStoreWithout']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -68,8 +68,8 @@ declare global {
   const loginMsgBox: typeof import('./composables/message')['loginMsgBox']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
-  const newsDetailStore: typeof import('./composables/config')['newsDetailStore']
-  const newsListStore: typeof import('./composables/config')['newsListStore']
+  const newsDetailStore: typeof import('./composables/storage')['newsDetailStore']
+  const newsListStore: typeof import('./composables/storage')['newsListStore']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
@@ -79,6 +79,7 @@ declare global {
   const onBeforeUpdate: typeof import('vue')['onBeforeUpdate']
   const onClickOutside: typeof import('@vueuse/core')['onClickOutside']
   const onDeactivated: typeof import('vue')['onDeactivated']
+  const onElementRemoval: typeof import('@vueuse/core')['onElementRemoval']
   const onErrorCaptured: typeof import('vue')['onErrorCaptured']
   const onKeyStroke: typeof import('@vueuse/core')['onKeyStroke']
   const onLoginKey: typeof import('./composables/provide')['onLoginKey']
@@ -96,7 +97,7 @@ declare global {
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaInit: typeof import('./stores/index')['piniaInit']
   const productList: typeof import('./composables/config')['productList']
-  const productListStore: typeof import('./composables/config')['productListStore']
+  const productListStore: typeof import('./composables/storage')['productListStore']
   const productStoreWithout: typeof import('./stores/use-product-store')['productStoreWithout']
   const provide: typeof import('vue')['provide']
   const provideLocal: typeof import('@vueuse/core')['provideLocal']
@@ -314,6 +315,7 @@ declare global {
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
+  const useUserStore: typeof import('./stores/use-user-store')['default']
   const useVModel: typeof import('@vueuse/core')['useVModel']
   const useVModels: typeof import('@vueuse/core')['useVModels']
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
@@ -326,6 +328,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const userStorage: typeof import('./composables/storage')['userStorage']
   const userToken: typeof import('./composables/config')['userToken']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
@@ -350,7 +353,7 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { GlobalState, ProductCategory, ProductState } from './stores/pinia.types'
+  export type { GlobalState, ProductCategory, ProductState, UserState } from './stores/pinia.types'
   import('./stores/pinia.types')
 }
 
@@ -363,7 +366,7 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
-    readonly casesListStore: UnwrapRef<typeof import('./composables/config')['casesListStore']>
+    readonly casesListStore: UnwrapRef<typeof import('./composables/storage')['casesListStore']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -403,10 +406,10 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly emitter: UnwrapRef<typeof import('./composables/emitter')['default']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
-    readonly faqsListStore: UnwrapRef<typeof import('./composables/config')['faqsListStore']>
+    readonly faqsListStore: UnwrapRef<typeof import('./composables/storage')['faqsListStore']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly globalStoreWithout: UnwrapRef<typeof import('./stores/use-global-store')['globalStoreWithout']>
+    readonly globalStoreWithout: UnwrapRef<typeof import('./stores/use-user-store')['globalStoreWithout']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -419,8 +422,8 @@ declare module 'vue' {
     readonly loginMsgBox: UnwrapRef<typeof import('./composables/message')['loginMsgBox']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
-    readonly newsDetailStore: UnwrapRef<typeof import('./composables/config')['newsDetailStore']>
-    readonly newsListStore: UnwrapRef<typeof import('./composables/config')['newsListStore']>
+    readonly newsDetailStore: UnwrapRef<typeof import('./composables/storage')['newsDetailStore']>
+    readonly newsListStore: UnwrapRef<typeof import('./composables/storage')['newsListStore']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
@@ -430,6 +433,7 @@ declare module 'vue' {
     readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
     readonly onClickOutside: UnwrapRef<typeof import('@vueuse/core')['onClickOutside']>
     readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
+    readonly onElementRemoval: UnwrapRef<typeof import('@vueuse/core')['onElementRemoval']>
     readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
     readonly onKeyStroke: UnwrapRef<typeof import('@vueuse/core')['onKeyStroke']>
     readonly onLoginKey: UnwrapRef<typeof import('./composables/provide')['onLoginKey']>
@@ -446,7 +450,7 @@ declare module 'vue' {
     readonly openWindow: UnwrapRef<typeof import('./composables/download')['openWindow']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaInit: UnwrapRef<typeof import('./stores/index')['piniaInit']>
-    readonly productListStore: UnwrapRef<typeof import('./composables/config')['productListStore']>
+    readonly productListStore: UnwrapRef<typeof import('./composables/storage')['productListStore']>
     readonly productStoreWithout: UnwrapRef<typeof import('./stores/use-product-store')['productStoreWithout']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly provideLocal: UnwrapRef<typeof import('@vueuse/core')['provideLocal']>
@@ -663,6 +667,7 @@ declare module 'vue' {
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
+    readonly useUserStore: UnwrapRef<typeof import('./stores/use-user-store')['default']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
@@ -675,7 +680,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
-    readonly userToken: UnwrapRef<typeof import('./composables/config')['userToken']>
+    readonly userStorage: UnwrapRef<typeof import('./composables/storage')['userStorage']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

@@ -14,3 +14,8 @@ export interface ProductCategory {
 export interface ProductState {
     category: ProductCategory[]
 }
+
+export interface UserState {
+    token: string
+    info: Objable
+}
