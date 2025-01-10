@@ -87,6 +87,8 @@ useHead({
     title: 'MMF小屋-产品展示',
 })
 
+const { ctx } = useGlobal()
+
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
 
@@ -150,4 +152,6 @@ useDataIsLoaded({
 })
 
 useSaveScroll()
+
+ctx.$notify.success('This is a success message.')
 </script>

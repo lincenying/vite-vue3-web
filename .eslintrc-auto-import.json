@@ -398,6 +398,7 @@
     "onElementRemoval": true,
     "UserState": true,
     "useUserStore": true,
-    "userStorage": true
+    "userStorage": true,
+    "userStoreWithout": true
   }
 }

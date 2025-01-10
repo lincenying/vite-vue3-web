@@ -5,7 +5,6 @@ const usePiniaStore = defineStore('globalStore', () => {
     const state: GlobalState = reactive({
         globalLoading: true,
         routerLoading: false,
-        needLogin: false,
         ISDEV: import.meta.env.VITE_APP_ENV === 'development',
         ISPRE: import.meta.env.VITE_APP_ENV === 'pre-release',
         ISPROD: import.meta.env.VITE_APP_ENV === 'production',

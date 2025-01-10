@@ -32,7 +32,7 @@ usePiniaStore(piniaInit).$subscribe((_mutation, state) => {
 })
 
 export default usePiniaStore
-export const globalStoreWithout = () => usePiniaStore(piniaInit)
+export const userStoreWithout = () => usePiniaStore(piniaInit)
 
 if (import.meta.hot) {
     import.meta.hot.accept(acceptHMRUpdate(usePiniaStore, import.meta.hot))

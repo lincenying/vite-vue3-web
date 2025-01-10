@@ -55,7 +55,7 @@ declare global {
   const faqsListStore: typeof import('./composables/storage')['faqsListStore']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const globalStoreWithout: typeof import('./stores/use-user-store')['globalStoreWithout']
+  const globalStoreWithout: typeof import('./stores/use-global-store')['globalStoreWithout']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -329,6 +329,7 @@ declare global {
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const userStorage: typeof import('./composables/storage')['userStorage']
+  const userStoreWithout: typeof import('./stores/use-user-store')['userStoreWithout']
   const userToken: typeof import('./composables/config')['userToken']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
@@ -409,7 +410,7 @@ declare module 'vue' {
     readonly faqsListStore: UnwrapRef<typeof import('./composables/storage')['faqsListStore']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly globalStoreWithout: UnwrapRef<typeof import('./stores/use-user-store')['globalStoreWithout']>
+    readonly globalStoreWithout: UnwrapRef<typeof import('./stores/use-global-store')['globalStoreWithout']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -681,6 +682,7 @@ declare module 'vue' {
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly userStorage: UnwrapRef<typeof import('./composables/storage')['userStorage']>
+    readonly userStoreWithout: UnwrapRef<typeof import('./stores/use-user-store')['userStoreWithout']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

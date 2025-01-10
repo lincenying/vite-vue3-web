@@ -49,9 +49,13 @@ console.log(`VITE_APP_ENV: ${import.meta.env.VITE_APP_ENV}`)
 
 // test mock server
 if (import.meta.env.VITE_APP_ENV === 'pre-release') {
-    import('./mockProdServer').then(({ setupProdMockServer }) => {
+    (async () => {
+        const { setupProdMockServer } = await import('./mockProdServer')
         setupProdMockServer()
-    })
+    })()
+    // import('./mockProdServer').then(({ setupProdMockServer }) => {
+    //     setupProdMockServer()
+    // })
 }
 
 const head = createHead()
