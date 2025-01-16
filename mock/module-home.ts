@@ -158,7 +158,7 @@ export default [
                     })),
                     hasNext: 1,
                     total: 100,
-                    pageSize,
+                    pageSize: Number(pageSize),
                     currPage: Number(page),
                 },
             }

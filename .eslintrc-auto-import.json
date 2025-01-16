@@ -399,6 +399,10 @@
     "UserState": true,
     "useUserStore": true,
     "userStorage": true,
-    "userStoreWithout": true
+    "userStoreWithout": true,
+    "casesDetailStore": true,
+    "defInitList": true,
+    "faqsDetailStore": true,
+    "productDetailStore": true
   }
 }

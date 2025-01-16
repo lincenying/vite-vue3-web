@@ -3,7 +3,7 @@ import { isEmpty } from '@lincy/utils'
 import { StorageSerializers } from '@vueuse/core'
 import { acceptHMRUpdate } from 'pinia'
 
-const lsKey = '__product__'
+const lsKey = 'product-'
 
 let ls1 = $(useStorage<ProductState['category']>(`${lsKey}category`, null, localStorage, { serializer: StorageSerializers.object }))
 

@@ -65,7 +65,7 @@ useHead({
 
 const id = $(useRouteQuery<string>('id'))
 
-let data1 = $ref<NewsType>(newsDetailStore)
+let data1 = $ref<NewsType>(casesDetailStore)
 
 const navigation = ref<HTMLElement>()
 

@@ -27,7 +27,7 @@
                             </div>
                         </template>
                         <template #default>
-                            <div v-if="data1" b-rd-6px mb-24px p-32px bg="hex-fff">
+                            <div b-rd-6px mb-24px p-32px bg="hex-fff">
                                 <h1 font-bold text="center hex-202935 28px">{{ data1.title }}</h1>
                                 <div flex="~ justify-center items-center" mt-16px text="hex-8a8a8a">
                                     <i class="i-carbon-user-avatar" w-14px h-14px mr-5px></i>

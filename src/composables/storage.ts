@@ -2,12 +2,27 @@ import type { CasesListType } from '~/views/cases.types'
 import type { FaqsListType } from '~/views/faqs.types'
 import type { ProductsListType } from '~/views/home.types'
 import type { NewsListType, NewsType } from '~/views/news.types'
-import { StorageSerializers } from '@vueuse/core'
 
-export const userStorage = useStorage<Nullable<UserState>>('__user__', null, undefined, { serializer: StorageSerializers.object })
+export function defInitList() {
+    return {
+        list: [],
+        total: 0,
+        hasNext: 0,
+        pageSize: 12,
+        currPage: 1,
+    }
+}
 
-export const productListStore = useStorage<ProductsListType>('product-list', null, undefined, { serializer: StorageSerializers.object })
-export const casesListStore = useStorage<CasesListType>('cases-list', null, undefined, { serializer: StorageSerializers.object })
-export const newsListStore = useStorage<NewsListType>('news-list', null, undefined, { serializer: StorageSerializers.object })
-export const newsDetailStore = useStorage<NewsType>('news-detail', null, undefined, { serializer: StorageSerializers.object })
-export const faqsListStore = useStorage<FaqsListType>('faqs-list', null, undefined, { serializer: StorageSerializers.object })
+export const userStorage = useStorage<Nullable<UserState>>('user-info', { token: '', info: {} })
+
+export const productListStore = useStorage<ProductsListType>('product-list', defInitList())
+export const productDetailStore = useStorage<NewsType>('product-detail', {} as NewsType)
+
+export const casesListStore = useStorage<CasesListType>('cases-list', defInitList())
+export const casesDetailStore = useStorage<NewsType>('cases-detail', {} as NewsType)
+
+export const newsListStore = useStorage<NewsListType>('news-list', defInitList())
+export const newsDetailStore = useStorage<NewsType>('news-detail', {} as NewsType)
+
+export const faqsListStore = useStorage<FaqsListType>('faqs-list', defInitList())
+export const faqsDetailStore = useStorage<NewsType>('faqs-detail', {} as NewsType)

@@ -34,7 +34,7 @@
                                     <p class="faqs-a" relative pl-36px text="hex-8a8a8a 14px justify" lh-21px line-4>{{ item.intro }}</p>
                                 </li>
                             </ul>
-                            <div class="page" flex="~ justify-center" mb-24px>
+                            <div v-if="data1.total > pageSize" class="page" flex="~ justify-center" mb-24px>
                                 <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
                             </div>
                         </template>

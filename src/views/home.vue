@@ -63,7 +63,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="page" flex="~ justify-center" mb-24px>
+                            <div v-if="data1.total > pageSize" class="page" flex="~ justify-center" mb-24px>
                                 <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
                             </div>
                         </template>

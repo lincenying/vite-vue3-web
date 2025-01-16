@@ -12,6 +12,7 @@ declare global {
   const ElMessage: typeof import('element-plus/es')['ElMessage']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const casesDetailStore: typeof import('./composables/storage')['casesDetailStore']
   const casesListStore: typeof import('./composables/storage')['casesListStore']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -41,6 +42,7 @@ declare global {
   const deepClone: typeof import('@lincy/utils')['deepClone']
   const deepEqual: typeof import('@lincy/utils')['deepEqual']
   const deepMerge: typeof import('@lincy/utils')['deepMerge']
+  const defInitList: typeof import('./composables/storage')['defInitList']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
@@ -52,6 +54,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const emitter: typeof import('./composables/emitter')['default']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const faqsDetailStore: typeof import('./composables/storage')['faqsDetailStore']
   const faqsListStore: typeof import('./composables/storage')['faqsListStore']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
@@ -96,6 +99,7 @@ declare global {
   const openWindow: typeof import('./composables/download')['openWindow']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaInit: typeof import('./stores/index')['piniaInit']
+  const productDetailStore: typeof import('./composables/storage')['productDetailStore']
   const productList: typeof import('./composables/config')['productList']
   const productListStore: typeof import('./composables/storage')['productListStore']
   const productStoreWithout: typeof import('./stores/use-product-store')['productStoreWithout']
@@ -367,6 +371,7 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly casesDetailStore: UnwrapRef<typeof import('./composables/storage')['casesDetailStore']>
     readonly casesListStore: UnwrapRef<typeof import('./composables/storage')['casesListStore']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -396,6 +401,7 @@ declare module 'vue' {
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
+    readonly defInitList: UnwrapRef<typeof import('./composables/storage')['defInitList']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
@@ -407,6 +413,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly emitter: UnwrapRef<typeof import('./composables/emitter')['default']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly faqsDetailStore: UnwrapRef<typeof import('./composables/storage')['faqsDetailStore']>
     readonly faqsListStore: UnwrapRef<typeof import('./composables/storage')['faqsListStore']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
@@ -451,6 +458,7 @@ declare module 'vue' {
     readonly openWindow: UnwrapRef<typeof import('./composables/download')['openWindow']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaInit: UnwrapRef<typeof import('./stores/index')['piniaInit']>
+    readonly productDetailStore: UnwrapRef<typeof import('./composables/storage')['productDetailStore']>
     readonly productListStore: UnwrapRef<typeof import('./composables/storage')['productListStore']>
     readonly productStoreWithout: UnwrapRef<typeof import('./stores/use-product-store')['productStoreWithout']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
