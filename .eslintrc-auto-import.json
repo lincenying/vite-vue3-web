@@ -403,6 +403,7 @@
     "casesDetailStore": true,
     "defInitList": true,
     "faqsDetailStore": true,
-    "productDetailStore": true
+    "productDetailStore": true,
+    "defaultList": true
   }
 }

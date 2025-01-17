@@ -42,7 +42,7 @@ declare global {
   const deepClone: typeof import('@lincy/utils')['deepClone']
   const deepEqual: typeof import('@lincy/utils')['deepEqual']
   const deepMerge: typeof import('@lincy/utils')['deepMerge']
-  const defInitList: typeof import('./composables/storage')['defInitList']
+  const defaultList: typeof import('./composables/storage')['defaultList']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
@@ -401,7 +401,7 @@ declare module 'vue' {
     readonly deepClone: UnwrapRef<typeof import('@lincy/utils')['deepClone']>
     readonly deepEqual: UnwrapRef<typeof import('@lincy/utils')['deepEqual']>
     readonly deepMerge: UnwrapRef<typeof import('@lincy/utils')['deepMerge']>
-    readonly defInitList: UnwrapRef<typeof import('./composables/storage')['defInitList']>
+    readonly defaultList: UnwrapRef<typeof import('./composables/storage')['defaultList']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
