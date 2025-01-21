@@ -404,6 +404,7 @@
     "defInitList": true,
     "faqsDetailStore": true,
     "productDetailStore": true,
-    "defaultList": true
+    "defaultList": true,
+    "useFetchData": true
   }
 }

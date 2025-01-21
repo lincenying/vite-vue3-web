@@ -115,13 +115,13 @@ export function useAutoRefresh(fn: AnyFn, timer: number) {
  * 依赖的父级数据加载完成 或者 当前组件已经 mounted
  * @example
  * ```
- * 不依赖父级组件数据
- * useDataIsLoaded({ init: () => {} })
- * 依赖父级组件数据 fullData
- * useDataIsLoaded({ fullData, dataHasError, init, initError })
+ * 不依赖数据
+ * useFetchData({ initFn: () => {} })
+ * 依赖数据 watchData
+ * useFetchData({ watchData, dataHasError, init, initError })
  * ```
  */
-export function useDataIsLoaded<T, E>(payload: LoadedType<T, E>) {
+export function useFetchData<T, E>(payload: LoadedType<T, E>) {
     const ins = getCurrentInstance()!
     const options = ins.type
 
@@ -130,27 +130,35 @@ export function useDataIsLoaded<T, E>(payload: LoadedType<T, E>) {
         console.log(`%c[${options.name}]  >> `, `color: ${color}`, `${text} <<-- (${formatted.value})`)
     }
 
-    const { fullData, dataHasError, init, initError } = payload
+    const { watchData, dataHasError, initFn, errorFn } = payload
+
+    const [loading, toggleLoading] = useToggle(false)
 
     const scope = effectScope()
 
     scope.run(() => {
-        if (typeof fullData === 'undefined' && init) {
-            onMounted(() => {
+        if (typeof watchData === 'undefined' && initFn) {
+            onMounted(async () => {
+                const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
                 log('init in mounted')
-                init()
+                await (initFn && initFn())
+                stop()
+                toggleLoading(false)
             })
         }
-        if (typeof fullData === 'undefined' || typeof dataHasError === 'undefined') {
+        if (typeof watchData === 'undefined' || typeof dataHasError === 'undefined') {
             return
         }
 
         log('watch start')
         watch(
-            resolveRef(fullData),
-            () => {
+            resolveRef(watchData),
+            async () => {
+                const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
                 log('Parent component data has changed')
-                init && init('watch')
+                await (initFn && initFn('change-data'))
+                stop()
+                toggleLoading(false)
             },
             {
                 deep: true,
@@ -158,29 +166,38 @@ export function useDataIsLoaded<T, E>(payload: LoadedType<T, E>) {
         )
         watch(
             resolveRef(dataHasError),
-            () => {
+            async () => {
+                const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
                 log('Parent component data has error')
-                initError && initError()
+                await (errorFn && errorFn())
+                stop()
+                toggleLoading(false)
             },
         )
 
-        onBeforeUnmount(() => {
-            scope.stop()
-            log('watch stopped')
-        })
-
-        onMounted(() => {
-            if (resolveUnref(fullData)) {
+        onMounted(async () => {
+            if (resolveUnref(watchData)) {
+                const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
                 log('Parent component data has been loaded')
-                init && init()
+                await (initFn && initFn())
+                stop()
+                toggleLoading(false)
             }
             else {
                 log('Wait for parent data loading to complete')
             }
         })
+
+        onBeforeUnmount(() => {
+            scope.stop()
+            log('watch stopped')
+        })
     })
 
-    return scope
+    return {
+        scope,
+        loading,
+    }
 }
 
 /**

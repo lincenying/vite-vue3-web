@@ -25,7 +25,7 @@
                         <template #default>
                             <ul flex="~ wrap justify-between">
                                 <li
-                                    v-for="(item, index) in data1.list" :key="index"
+                                    v-for="(item, index) in faqLists.list" :key="index"
                                     w="[calc((100%-24px)/2)]" mb-24px p-24px b-rd-6px transition="all duration-.3s" bg="hex-fff"
                                 >
                                     <router-link :to="`/faqs/detail?id=${item.id}`">
@@ -34,8 +34,8 @@
                                     <p class="faqs-a" relative pl-36px text="hex-8a8a8a 14px justify" lh-21px line-4>{{ item.intro }}</p>
                                 </li>
                             </ul>
-                            <div v-if="data1.total > pageSize" class="page" flex="~ justify-center" mb-24px>
-                                <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
+                            <div v-if="faqLists.total > pageSize" class="page" flex="~ justify-center" mb-24px>
+                                <el-pagination background layout="prev, pager, next" :total="faqLists.total" :page-size="pageSize" @current-change="currentChange" />
                             </div>
                         </template>
                     </el-skeleton>
@@ -61,56 +61,41 @@ useHead({
 
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
+const category = $(useRouteQuery<number>('category'))
+const tag = $(useRouteQuery<string>('tag'))
 
-let data1 = $ref<FaqsListType>(faqsListStore)
-
-const navigation = ref<HTMLElement>()
-
-const route = useRoute()
-
+let faqLists = $ref<FaqsListType>(faqsListStore)
 async function getData() {
-    const { code, data } = await $api.get<FaqsListType>('/faqs/getList', { page, pageSize, ...route.query })
+    const { code, data } = await $api.get<FaqsListType>('/faqs/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(faqsListStore.value), data)) {
-        data1 = data
+        faqLists = data
         faqsListStore.value = data
     }
 }
 
-const [loading, toggleLoading] = useToggle(false)
-
-async function init(action: InitType = 'init') {
-    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-    if (action === 'watch' || action === 'change-page') {
+const navigation = ref<HTMLElement>()
+async function initFn(action: InitType = 'init-data') {
+    if (action === 'change-data' || action === 'change-page') {
         scrollToNav(navigation, -80)
     }
-    if (action === 'watch') {
+    if (action === 'change-data') {
         page = 1
     }
     await Promise.all([getData()])
-    stop()
 }
+
+const watchData = computed(() => ({ category, tag }))
+const { loading } = useFetchData({
+    watchData,
+    dataHasError: false,
+    initFn,
+    errorFn: () => {},
+})
 
 async function currentChange(newPage: number) {
     page = newPage
-    init('change-page')
+    initFn('change-page')
 }
-
-const category = $(useRouteQuery<number>('category'))
-const tag = $(useRouteQuery<string>('tag'))
-
-const fullData = computed(() => {
-    return {
-        category,
-        tag,
-    }
-})
-
-useDataIsLoaded({
-    fullData,
-    dataHasError: false,
-    init,
-    initError: () => {},
-})
 
 useSaveScroll()
 </script>

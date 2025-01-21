@@ -1,9 +1,9 @@
 /**
- * init: 初始化时
- * watch: 监听时
+ * init-data: 初始化时
+ * change-data: 监听时
  * change-page: 切换页码时
  */
-export type InitType = 'init' | 'watch' | 'change-page'
+export type InitType = 'init-data' | 'change-data' | 'change-page'
 
 export interface ProductsType {
     id: string

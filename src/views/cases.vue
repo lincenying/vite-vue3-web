@@ -30,7 +30,7 @@
                         <template #default>
                             <ul class="cases-ul">
                                 <li
-                                    v-for="(item, index) in data1.list" :key="index"
+                                    v-for="(item, index) in casesLists.list" :key="index"
                                     flex="~ wrap items-center" mb-24px p-24px overflow-hidden b-rd-6px bg="hex-fff"
                                 >
                                     <router-link flex="[0_0_300px]" h-200px mr-24px b-rd-4px overflow-hidden :to="`/cases/detail?id=${item.id}`">
@@ -49,8 +49,8 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div v-if="data1.total > pageSize" class="page" flex="~ justify-center" mb-24px>
-                                <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
+                            <div v-if="casesLists.total > pageSize" class="page" flex="~ justify-center" mb-24px>
+                                <el-pagination background layout="prev, pager, next" :total="casesLists.total" :page-size="pageSize" @current-change="currentChange" />
                             </div>
                         </template>
                     </el-skeleton>
@@ -76,57 +76,41 @@ useHead({
 
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
+const category = $(useRouteQuery<number>('category'))
+const tag = $(useRouteQuery<string>('tag'))
 
-let data1 = $ref<CasesListType>(casesListStore)
-
-const navigation = ref<HTMLElement>()
-
-const route = useRoute()
-
+let casesLists = $ref<CasesListType>(casesListStore)
 async function getData() {
-    const { code, data } = await $api.get<CasesListType>('/cases/getList', { page, pageSize, ...route.query })
+    const { code, data } = await $api.get<CasesListType>('/cases/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(casesListStore.value), data)) {
-        data1 = data
+        casesLists = data
         casesListStore.value = data
     }
 }
 
-const [loading, toggleLoading] = useToggle(false)
-
-async function init(action: InitType = 'init') {
-    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-    if (action === 'watch' || action === 'change-page') {
+const navigation = ref<HTMLElement>()
+async function initFn(action: InitType = 'init-data') {
+    if (action === 'change-data' || action === 'change-page') {
         scrollToNav(navigation, -80)
     }
-    if (action === 'watch') {
+    if (action === 'change-data') {
         page = 1
     }
     await Promise.all([getData()])
-    stop()
-    toggleLoading(false)
 }
+
+const watchData = computed(() => ({ category, tag }))
+const { loading } = useFetchData({
+    watchData,
+    dataHasError: false,
+    initFn,
+    errorFn: () => {},
+})
 
 async function currentChange(newPage: number) {
     page = newPage
-    init('change-page')
+    initFn('change-page')
 }
-
-const category = $(useRouteQuery<number>('category'))
-const tag = $(useRouteQuery<string>('tag'))
-
-const fullData = computed(() => {
-    return {
-        category,
-        tag,
-    }
-})
-
-useDataIsLoaded({
-    fullData,
-    dataHasError: false,
-    init,
-    initError: () => {},
-})
 
 useSaveScroll()
 </script>

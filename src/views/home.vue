@@ -36,7 +36,7 @@
                         <template #default>
                             <ul class="home-ul" flex="~ wrap justify-between">
                                 <li
-                                    v-for="(item, index) in data1.list" :key="index"
+                                    v-for="(item, index) in productLists.list" :key="index"
                                     w="[calc((100%-48px)/3)]" mb-24px bg="hex-fff"
                                 >
                                     <router-link :to="`/home/detail?id=${item.id}`" relative block pt="2/3" b-rd-6px overflow-hidden>
@@ -63,8 +63,8 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div v-if="data1.total > pageSize" class="page" flex="~ justify-center" mb-24px>
-                                <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
+                            <div v-if="productLists.total > pageSize" class="page" flex="~ justify-center" mb-24px>
+                                <el-pagination background layout="prev, pager, next" :total="productLists.total" :page-size="pageSize" @current-change="currentChange" />
                             </div>
                         </template>
                     </el-skeleton>
@@ -91,49 +91,39 @@ const { ctx } = useGlobal()
 
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
-
-let data1 = $ref<ProductsListType>(productListStore)
-
-const navigation = ref<HTMLElement>()
-
-const route = useRoute()
-
-async function getData() {
-    const { code, data } = await $api.get<ProductsListType>('/home/getList', { page, pageSize, ...route.query })
-    if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(productListStore.value), data)) {
-        data1 = data
-        productListStore.value = data
-    }
-}
-
-const [loading, toggleLoading] = useToggle(false)
-
-async function init(action: InitType = 'init') {
-    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-    if (action === 'watch' || action === 'change-page') {
-        scrollToNav(navigation, -80)
-    }
-    if (action === 'watch') {
-        page = 1
-    }
-    await Promise.all([getData()])
-    stop()
-    toggleLoading(false)
-}
-
-async function currentChange(newPage: number) {
-    page = newPage
-    init('change-page')
-}
-
 const category = $(useRouteQuery<number>('category'))
 const tag = $(useRouteQuery<string>('tag'))
 
-const fullData = computed(() => {
-    return {
-        category,
-        tag,
+let dataHasError = $ref<boolean>(false)
+let productLists = $ref<ProductsListType>(productListStore)
+async function getData() {
+    const { code, data } = await $api.get<ProductsListType>('/home/getList', { page, pageSize, category, tag })
+    if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(productListStore.value), data)) {
+        productLists = data
+        productListStore.value = data
     }
+    else {
+        dataHasError = true
+    }
+}
+
+const navigation = ref<HTMLElement>()
+async function initFn(action: InitType = 'init-data') {
+    if (action === 'change-data' || action === 'change-page') {
+        scrollToNav(navigation, -80)
+    }
+    if (action === 'change-data') {
+        page = 1
+    }
+    await Promise.all([getData()])
+}
+
+const watchData = computed(() => ({ category, tag }))
+const { loading } = useFetchData({
+    watchData,
+    dataHasError,
+    initFn,
+    errorFn: () => {},
 })
 
 emitter.on('change-category', (newCategoryId) => {
@@ -144,12 +134,10 @@ onUnmounted(() => {
     emitter.off('change-category')
 })
 
-useDataIsLoaded({
-    fullData,
-    dataHasError: false,
-    init,
-    initError: () => {},
-})
+async function currentChange(newPage: number) {
+    page = newPage
+    initFn('change-page')
+}
 
 useSaveScroll()
 

@@ -28,7 +28,7 @@
                         <template #default>
                             <ul>
                                 <li
-                                    v-for="(item, index) in data1.list" :key="index"
+                                    v-for="(item, index) in newsLists.list" :key="index"
                                     relative top-0 flex="~ items-center" mb-24px p-24px b-rd-6px bg="hex-fff" transition="all duration-.3s"
                                 >
                                     <div flex="[0_0_80px]" h-80px p="x-0 y-16px" mr-16px b-rd-4px text="hex-8a8a8a 12px center" bg="hex-eee">
@@ -40,8 +40,8 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div v-if="data1.total > pageSize" class="page" flex="~ justify-center" mb-24px>
-                                <el-pagination background layout="prev, pager, next" :total="data1.total" :page-size="pageSize" @current-change="currentChange" />
+                            <div v-if="newsLists.total > pageSize" class="page" flex="~ justify-center" mb-24px>
+                                <el-pagination background layout="prev, pager, next" :total="newsLists.total" :page-size="pageSize" @current-change="currentChange" />
                             </div>
                         </template>
                     </el-skeleton>
@@ -67,58 +67,41 @@ useHead({
 
 let page = $ref<number>(1)
 const pageSize = $ref<number>(12)
+const category = $(useRouteQuery<number>('category'))
+const tag = $(useRouteQuery<string>('tag'))
 
-let data1 = $ref<NewsListType>(newsListStore)
-console.log(data1)
-
-const navigation = ref<HTMLElement>()
-
-const route = useRoute()
-
+let newsLists = $ref<NewsListType>(newsListStore)
 async function getData() {
-    const { code, data } = await $api.get<NewsListType>('/news/getList', { page, pageSize, ...route.query })
+    const { code, data } = await $api.get<NewsListType>('/news/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(newsListStore.value), data)) {
-        data1 = data
+        newsLists = data
         newsListStore.value = data
     }
 }
 
-const [loading, toggleLoading] = useToggle(false)
-
-async function init(action: InitType = 'init') {
-    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-    if (action === 'watch' || action === 'change-page') {
+const navigation = ref<HTMLElement>()
+async function initFn(action: InitType = 'init-data') {
+    if (action === 'change-data' || action === 'change-page') {
         scrollToNav(navigation, -80)
     }
-    if (action === 'watch') {
+    if (action === 'change-data') {
         page = 1
     }
     await Promise.all([getData()])
-    stop()
-    toggleLoading(false)
 }
+
+const watchData = computed(() => ({ category, tag }))
+const { loading } = useFetchData({
+    watchData,
+    dataHasError: false,
+    initFn,
+    errorFn: () => {},
+})
 
 async function currentChange(newPage: number) {
     page = newPage
-    init('change-page')
+    initFn('change-page')
 }
-
-const category = $(useRouteQuery<number>('category'))
-const tag = $(useRouteQuery<string>('tag'))
-
-const fullData = computed(() => {
-    return {
-        category,
-        tag,
-    }
-})
-
-useDataIsLoaded({
-    fullData,
-    dataHasError: false,
-    init,
-    initError: () => {},
-})
 
 useSaveScroll()
 </script>

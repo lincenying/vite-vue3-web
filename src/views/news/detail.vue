@@ -28,17 +28,17 @@
                         </template>
                         <template #default>
                             <div b-rd-6px mb-24px p-32px bg="hex-fff">
-                                <h1 font-bold text="center hex-202935 28px">{{ data1.title }}</h1>
+                                <h1 font-bold text="center hex-202935 28px">{{ newsDetail.title }}</h1>
                                 <div flex="~ justify-center items-center" mt-16px text="hex-8a8a8a">
                                     <i class="i-carbon-user-avatar" w-14px h-14px mr-5px></i>
-                                    <span mr-20px>{{ data1.author }}</span>
+                                    <span mr-20px>{{ newsDetail.author }}</span>
                                     <i class="i-carbon-time" w-14px h-14px mr-5px></i>
-                                    <span mr-20px>{{ data1.date }}</span>
+                                    <span mr-20px>{{ newsDetail.date }}</span>
                                     <i class="i-carbon-collapse-categories" w-14px h-14px mr-5px></i>
-                                    <span mr-20px>{{ data1.category }}</span>
-                                    <span>阅读({{ data1.views }})</span>
+                                    <span mr-20px>{{ newsDetail.category }}</span>
+                                    <span>阅读({{ newsDetail.views }})</span>
                                 </div>
-                                <div class="article-content" pt-24px text="hex-202935 16px" lh-28px v-html="data1.content"></div>
+                                <div class="article-content" pt-24px text="hex-202935 16px" lh-28px v-html="newsDetail.content"></div>
                             </div>
                         </template>
                     </el-skeleton>
@@ -50,6 +50,7 @@
 </template>
 
 <script setup lang="ts">
+import type { InitType } from '../home.types'
 import type { NewsType } from '../news.types'
 import { isEmpty } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
@@ -65,41 +66,29 @@ useHead({
 
 const id = $(useRouteQuery<string>('id'))
 
-let data1 = $ref<NewsType>(newsDetailStore)
-
-const navigation = ref<HTMLElement>()
-
+let newsDetail = $ref<NewsType>(newsDetailStore)
 async function getData() {
     const { code, data } = await $api.get<NewsType>('/news/detail', { id })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(newsDetailStore.value), data)) {
-        data1 = data
+        newsDetail = data
         title.value = data.title
         newsDetailStore.value = data
     }
 }
 
-const [loading, toggleLoading] = useToggle(false)
-
-async function init(isWatch: boolean = false) {
-    const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
+const navigation = ref<HTMLElement>()
+async function initFn(action: InitType = 'init-data') {
     await Promise.all([getData()])
-    stop()
-    if (isWatch)
+    if (action === 'change-data')
         scrollToNav(navigation, -80)
-    toggleLoading(false)
 }
 
-const fullData = computed(() => {
-    return {
-        id,
-    }
-})
-
-useDataIsLoaded({
-    fullData,
+const watchData = computed(() => ({ id }))
+const { loading } = useFetchData({
+    watchData,
     dataHasError: false,
-    init,
-    initError: () => {},
+    initFn,
+    errorFn: () => {},
 })
 
 useSaveScroll()

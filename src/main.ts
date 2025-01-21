@@ -1,3 +1,4 @@
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createHead } from '@unhead/vue'
 import { createApp } from 'vue'
 
@@ -62,7 +63,7 @@ const head = createHead()
 
 const app = createApp(App)
 
-setupPinia(app).use(head).use(router).use(globalPlugin).mount('#app')
+setupPinia(app).use(head).use(router).use(VueQueryPlugin).use(globalPlugin).mount('#app')
 
 // router.isReady().then(() => {
 //     app.mount('#app')
