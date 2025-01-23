@@ -405,6 +405,12 @@
     "faqsDetailStore": true,
     "productDetailStore": true,
     "defaultList": true,
-    "useFetchData": true
+    "useFetchData": true,
+    "productCommentStore": true,
+    "scrollToComment": true,
+    "commentStore": true,
+    "caseCommentStore": true,
+    "faqCommentStore": true,
+    "newsCommentStore": true
   }
 }

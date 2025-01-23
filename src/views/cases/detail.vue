@@ -43,6 +43,8 @@
                         </template>
                     </el-skeleton>
                     <OtherRelatedRecom column="cases"></OtherRelatedRecom>
+                    <OtherComments :id="caseDetail.id" type="case"></OtherComments>
+                    <OtherCommentPost :id="caseDetail.id" type="case"></OtherCommentPost>
                 </div>
             </div>
         </div>

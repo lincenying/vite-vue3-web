@@ -44,6 +44,8 @@
                         </template>
                     </el-skeleton>
                     <OtherRelatedRecom column="products" :category-id="productDetail.category_id"></OtherRelatedRecom>
+                    <OtherComments :id="productDetail.id" type="product"></OtherComments>
+                    <OtherCommentPost :id="productDetail.id" type="product"></OtherCommentPost>
                 </div>
             </div>
         </div>

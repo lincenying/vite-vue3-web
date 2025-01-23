@@ -1,3 +1,4 @@
+import type { CommentType } from '~/components/other/comments.types'
 import type { CasesListType } from '~/views/cases.types'
 import type { FaqsListType } from '~/views/faqs.types'
 import type { ProductsListType } from '~/views/home.types'
@@ -26,3 +27,15 @@ export const newsDetailStore = useStorage<NewsType>('news-detail', {} as NewsTyp
 
 export const faqsListStore = useStorage<FaqsListType>('faqs-list', defaultList())
 export const faqsDetailStore = useStorage<NewsType>('faqs-detail', {} as NewsType)
+
+export const productCommentStore = useStorage<CommentType>('product-comment-list', defaultList())
+export const caseCommentStore = useStorage<CommentType>('case-comment-list', defaultList())
+export const newsCommentStore = useStorage<CommentType>('news-comment-list', defaultList())
+export const faqCommentStore = useStorage<CommentType>('faq-comment-list', defaultList())
+
+export const commentStore = {
+    product: productCommentStore,
+    case: caseCommentStore,
+    news: newsCommentStore,
+    faq: faqCommentStore,
+}

@@ -12,8 +12,10 @@ declare global {
   const ElMessage: typeof import('element-plus/es')['ElMessage']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const caseCommentStore: typeof import('./composables/storage')['caseCommentStore']
   const casesDetailStore: typeof import('./composables/storage')['casesDetailStore']
   const casesListStore: typeof import('./composables/storage')['casesListStore']
+  const commentStore: typeof import('./composables/storage')['commentStore']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -54,6 +56,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const emitter: typeof import('./composables/emitter')['default']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const faqCommentStore: typeof import('./composables/storage')['faqCommentStore']
   const faqsDetailStore: typeof import('./composables/storage')['faqsDetailStore']
   const faqsListStore: typeof import('./composables/storage')['faqsListStore']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -71,6 +74,7 @@ declare global {
   const loginMsgBox: typeof import('./composables/message')['loginMsgBox']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
+  const newsCommentStore: typeof import('./composables/storage')['newsCommentStore']
   const newsDetailStore: typeof import('./composables/storage')['newsDetailStore']
   const newsListStore: typeof import('./composables/storage')['newsListStore']
   const nextTick: typeof import('vue')['nextTick']
@@ -99,6 +103,7 @@ declare global {
   const openWindow: typeof import('./composables/download')['openWindow']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const piniaInit: typeof import('./stores/index')['piniaInit']
+  const productCommentStore: typeof import('./composables/storage')['productCommentStore']
   const productDetailStore: typeof import('./composables/storage')['productDetailStore']
   const productList: typeof import('./composables/config')['productList']
   const productListStore: typeof import('./composables/storage')['productListStore']
@@ -122,6 +127,7 @@ declare global {
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const routerKey: typeof import('./composables/provide')['routerKey']
+  const scrollToComment: typeof import('./composables/index')['scrollToComment']
   const scrollToNav: typeof import('./composables/index')['scrollToNav']
   const setupPinia: typeof import('./stores/index')['setupPinia']
   const shallowReactive: typeof import('vue')['shallowReactive']
@@ -370,10 +376,13 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('./composables/fetch')['$api']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly caseCommentStore: UnwrapRef<typeof import('./composables/storage')['caseCommentStore']>
     readonly casesDetailStore: UnwrapRef<typeof import('./composables/storage')['casesDetailStore']>
     readonly casesListStore: UnwrapRef<typeof import('./composables/storage')['casesListStore']>
+    readonly commentStore: UnwrapRef<typeof import('./composables/storage')['commentStore']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -414,6 +423,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly emitter: UnwrapRef<typeof import('./composables/emitter')['default']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly faqCommentStore: UnwrapRef<typeof import('./composables/storage')['faqCommentStore']>
     readonly faqsDetailStore: UnwrapRef<typeof import('./composables/storage')['faqsDetailStore']>
     readonly faqsListStore: UnwrapRef<typeof import('./composables/storage')['faqsListStore']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
@@ -431,6 +441,7 @@ declare module 'vue' {
     readonly loginMsgBox: UnwrapRef<typeof import('./composables/message')['loginMsgBox']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly newsCommentStore: UnwrapRef<typeof import('./composables/storage')['newsCommentStore']>
     readonly newsDetailStore: UnwrapRef<typeof import('./composables/storage')['newsDetailStore']>
     readonly newsListStore: UnwrapRef<typeof import('./composables/storage')['newsListStore']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -459,6 +470,7 @@ declare module 'vue' {
     readonly openWindow: UnwrapRef<typeof import('./composables/download')['openWindow']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly piniaInit: UnwrapRef<typeof import('./stores/index')['piniaInit']>
+    readonly productCommentStore: UnwrapRef<typeof import('./composables/storage')['productCommentStore']>
     readonly productDetailStore: UnwrapRef<typeof import('./composables/storage')['productDetailStore']>
     readonly productListStore: UnwrapRef<typeof import('./composables/storage')['productListStore']>
     readonly productStoreWithout: UnwrapRef<typeof import('./stores/use-product-store')['productStoreWithout']>
@@ -481,6 +493,7 @@ declare module 'vue' {
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly routerKey: UnwrapRef<typeof import('./composables/provide')['routerKey']>
+    readonly scrollToComment: UnwrapRef<typeof import('./composables/index')['scrollToComment']>
     readonly scrollToNav: UnwrapRef<typeof import('./composables/index')['scrollToNav']>
     readonly setupPinia: UnwrapRef<typeof import('./stores/index')['setupPinia']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>

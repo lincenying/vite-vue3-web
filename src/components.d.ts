@@ -24,6 +24,8 @@ declare module 'vue' {
     HomeCategory: typeof import('./components/home/category.vue')['default']
     HomeRecommend: typeof import('./components/home/recommend.vue')['default']
     NewsRecommend: typeof import('./components/news/recommend.vue')['default']
+    OtherCommentPost: typeof import('./components/other/comment-post.vue')['default']
+    OtherComments: typeof import('./components/other/comments.vue')['default']
     OtherLoading: typeof import('./components/other/loading.vue')['default']
     OtherRelatedRecom: typeof import('./components/other/related-recom.vue')['default']
     OtherTopBanner: typeof import('./components/other/top-banner.vue')['default']

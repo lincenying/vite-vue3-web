@@ -134,28 +134,33 @@ export function useFetchData<T, E>(payload: LoadedType<T, E>) {
 
     const [loading, toggleLoading] = useToggle(false)
 
+    if (typeof watchData === 'undefined' && initFn) {
+        onMounted(async () => {
+            const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
+            log('未发现监听数据, 直接执行初始化函数')
+            await (initFn && initFn())
+            stop()
+            toggleLoading(false)
+        })
+    }
+    if (typeof watchData === 'undefined' || typeof dataHasError === 'undefined') {
+        return {
+            scope: () => {},
+            loading: false,
+        }
+    }
+
     const scope = effectScope()
 
     scope.run(() => {
-        if (typeof watchData === 'undefined' && initFn) {
-            onMounted(async () => {
-                const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-                log('init in mounted')
-                await (initFn && initFn())
-                stop()
-                toggleLoading(false)
-            })
-        }
-        if (typeof watchData === 'undefined' || typeof dataHasError === 'undefined') {
-            return
-        }
-
-        log('watch start')
+        log('监听开始')
         watch(
             resolveRef(watchData),
-            async () => {
+            async (val, oldVal) => {
                 const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-                log('Parent component data has changed')
+                log('监听数据发生变化, 执行初始化函数')
+                log(`旧值: ${JSON.stringify(oldVal)}`)
+                log(`新值: ${JSON.stringify(val)}`)
                 await (initFn && initFn('change-data'))
                 stop()
                 toggleLoading(false)
@@ -168,30 +173,30 @@ export function useFetchData<T, E>(payload: LoadedType<T, E>) {
             resolveRef(dataHasError),
             async () => {
                 const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-                log('Parent component data has error')
+                log('数据加载失败, 执行错误函数')
                 await (errorFn && errorFn())
                 stop()
                 toggleLoading(false)
             },
         )
+    })
 
-        onMounted(async () => {
-            if (resolveUnref(watchData)) {
-                const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
-                log('Parent component data has been loaded')
-                await (initFn && initFn())
-                stop()
-                toggleLoading(false)
-            }
-            else {
-                log('Wait for parent data loading to complete')
-            }
-        })
+    onMounted(async () => {
+        if (resolveUnref(watchData)) {
+            const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
+            log('发现监听数据, 执行初始化函数')
+            await (initFn && initFn())
+            stop()
+            toggleLoading(false)
+        }
+        else {
+            log('未发现监听数据, 跳过初始化函数')
+        }
+    })
 
-        onBeforeUnmount(() => {
-            scope.stop()
-            log('watch stopped')
-        })
+    onBeforeUnmount(() => {
+        scope.stop()
+        log('停止监听')
     })
 
     return {
@@ -237,6 +242,27 @@ export function useSaveScroll() {
 export function scrollToNav(navigation: Ref<HTMLElement | undefined>, adjust: number = 0) {
     // 获取导航元素相对于视口的顶部位置
     let top = navigation.value?.getBoundingClientRect().top
+    // 如果导航元素存在
+    if (top !== undefined) {
+        // 计算最终的滚动位置，包括当前的垂直滚动位置和额外的调整值
+        top += window.scrollY + adjust
+    }
+    // 平滑滚动到计算出的位置
+    window.scrollTo({ top: top || 0, behavior: 'smooth' })
+}
+
+/**
+ * 滚动到评论的位置
+ *
+ * 该函数用于平滑滚动页面，使指定的导航元素滚动到可视区域的顶部，并可进行额外的位置调整。
+ *
+ * @param {Ref<HTMLElement | undefined>} commentBox - 一个响应式引用，指向要滚动到的导航元素
+ * @param {number} [adjust] - 可选参数，用于调整滚动位置的偏移量
+ * @returns {void}
+ */
+export function scrollToComment(commentBox: Ref<HTMLElement | undefined>, adjust: number = 0) {
+    // 获取导航元素相对于视口的顶部位置
+    let top = commentBox.value?.getBoundingClientRect().top
     // 如果导航元素存在
     if (top !== undefined) {
         // 计算最终的滚动位置，包括当前的垂直滚动位置和额外的调整值
