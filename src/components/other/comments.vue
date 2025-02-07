@@ -86,8 +86,14 @@ async function currentChange(newPage: number) {
     initFn('change-page')
 }
 
-emitter.on(`refresh-${props.type}-comment`, () => {
+function emitterFn() {
     page = 1
     initFn('change-data')
+}
+
+emitter.on(`refresh-${props.type}-comment`, emitterFn)
+
+onUnmounted(() => {
+    emitter.off(`refresh-${props.type}-comment`, emitterFn)
 })
 </script>

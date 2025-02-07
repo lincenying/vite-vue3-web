@@ -411,6 +411,7 @@
     "commentStore": true,
     "caseCommentStore": true,
     "faqCommentStore": true,
-    "newsCommentStore": true
+    "newsCommentStore": true,
+    "useCountdown": true
   }
 }

@@ -11,6 +11,12 @@ const emitter = mitt<{
 // 创建并暴露mitt
 export default emitter
 
+// 监听事件
+// emitter.on('change-category', (categoryId) => { })
+
+// 触发事件
+// emitter.emit('change-category', 1)
+
 // 清理事件
 // emitter.all.clear()
 
