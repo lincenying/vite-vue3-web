@@ -1,5 +1,5 @@
 import { VueQueryPlugin } from '@tanstack/vue-query'
-import { createHead } from '@unhead/vue'
+import { createHead } from '@unhead/vue/client'
 import { createApp } from 'vue'
 
 import App from '@/app.vue'
