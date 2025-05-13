@@ -412,6 +412,10 @@
     "caseCommentStore": true,
     "faqCommentStore": true,
     "newsCommentStore": true,
-    "useCountdown": true
+    "useCountdown": true,
+    "Slot": true,
+    "Slots": true,
+    "createRef": true,
+    "useCaseStore": true
   }
 }

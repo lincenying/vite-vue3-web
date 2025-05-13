@@ -1,6 +1,6 @@
 import type { CSSOptions } from 'vite'
 
-const charsetRemoval = function () {
+function charsetRemoval() {
     return {
         postcssPlugin: 'internal:charset-removal',
         AtRule: {

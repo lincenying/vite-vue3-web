@@ -14,7 +14,7 @@ const config = lincy(
             markdown: true,
         },
         toml: false,
-        pnpm: true,
+        pnpm: false,
         overrides: {
             stylistic: {
                 'style/jsx-max-props-per-line': ['error', { maximum: 4 }],

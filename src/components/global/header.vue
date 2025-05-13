@@ -40,6 +40,6 @@ const productStore = useProductStore()
 const { category } = storeToRefs(productStore)
 
 function handleCommand(command: string) {
-    router.push(`/?id=${command}`)
+    router.push(`/?category=${command}`)
 }
 </script>
