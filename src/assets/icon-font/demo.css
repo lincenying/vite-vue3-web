@@ -51,8 +51,8 @@
 }
 
 #tabs .active {
-    border-bottom-color: #f00;
     color: #222;
+    border-bottom-color: #f00;
 }
 
 .tab-container .content {
@@ -262,10 +262,10 @@
 .markdown > table {
     width: 95%;
     margin-bottom: 24px;
-    border: 1px solid #e9e9e9;
-    border-collapse: collapse;
-    border-spacing: 0;
     empty-cells: show;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 1px solid #e9e9e9;
 }
 
 .markdown > table th {
@@ -399,17 +399,17 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
 code[class*='language-'],
 pre[class*='language-'] {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    hyphens: none;
     line-height: 1.5;
-    word-spacing: normal;
     color: black;
     text-align: left;
     text-shadow: 0 1px white;
     word-break: normal;
     word-wrap: normal;
+    tab-size: 4;
     white-space: pre;
     background: none;
-    tab-size: 4;
-    hyphens: none;
+    word-spacing: normal;
 }
 
 pre[class*='language-']::selection,
@@ -486,7 +486,7 @@ pre[class*='language-'] {
 .language-css .token.string,
 .style .token.string {
     color: #9a6e3a;
-    background: hsla(0deg, 0%, 100%, 0.5);
+    background: hsl(0deg, 0%, 100%, 0.5);
 }
 
 .token.atrule,
