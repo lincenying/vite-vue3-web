@@ -21,7 +21,7 @@ defineOptions({
 })
 
 const props = defineProps<{
-    categoryId: number
+    categoryId: number | string | undefined
 }>()
 const { categoryId } = toRefs(props)
 

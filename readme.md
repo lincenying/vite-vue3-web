@@ -1,6 +1,6 @@
 # Vue3 web项目模板
 
-vue3 管理后台脚手架, 包含技术栈(Vue3 + Element-Plus + Pinia + Vite + TS + Unocss)
+vue3 web项目脚手架, 包含技术栈(Vue3 + Element-Plus + Pinia + Vite + TS + Unocss)
 
 demo: http://demo-web.mmxiaowu.com/
 
