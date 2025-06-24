@@ -90,6 +90,7 @@ const { loading } = useFetchData({
     dataHasError: false,
     initFn,
     errorFn: () => {},
+    immediate: true,
 })
 
 async function currentChange(newPage: number) {

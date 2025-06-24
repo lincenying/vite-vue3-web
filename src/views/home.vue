@@ -124,6 +124,7 @@ const { loading } = useFetchData({
     dataHasError,
     initFn,
     errorFn: () => {},
+    immediate: true,
 })
 
 emitter.on('change-category', (newCategoryId) => {

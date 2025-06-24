@@ -2,7 +2,7 @@
     <div id="root" v-loading="globalLoading" flex="~ col" element-loading-text="数据加载中...">
         <template v-if="!needLogin">
             <template v-if="!globalLoading">
-                <globalHeader page="home" />
+                <globalHeader />
                 <router-view v-slot="{ Component }" class="body">
                     <transition
                         v-if="Component"

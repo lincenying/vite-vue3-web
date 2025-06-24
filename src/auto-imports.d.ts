@@ -8,8 +8,13 @@ export {}
 declare global {
   const $api: typeof import('./composables/fetch')['$api']
   const CasesListStore: typeof import('./composables/config')['CasesListStore']
+  const Delete: typeof import('./composables/alova')['Delete']
   const EffectScope: typeof import('vue')['EffectScope']
   const ElMessage: typeof import('element-plus/es')['ElMessage']
+  const Get: typeof import('./composables/alova')['Get']
+  const Post: typeof import('./composables/alova')['Post']
+  const Put: typeof import('./composables/alova')['Put']
+  const alova: typeof import('./composables/alova')['default']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const caseCommentStore: typeof import('./composables/storage')['caseCommentStore']
@@ -222,12 +227,14 @@ declare global {
   const useEyeDropper: typeof import('@vueuse/core')['useEyeDropper']
   const useFavicon: typeof import('@vueuse/core')['useFavicon']
   const useFetch: typeof import('@vueuse/core')['useFetch']
-  const useFetchData: typeof import('./composables/index')['useFetchData']
+  const useFetchData: typeof import('./composables/fetch')['useFetchData']
+  const useFetcher: typeof import('./composables/alova')['useFetcher']
   const useFileDialog: typeof import('@vueuse/core')['useFileDialog']
   const useFileSystemAccess: typeof import('@vueuse/core')['useFileSystemAccess']
   const useFilters: typeof import('./composables/filters')['useFilters']
   const useFocus: typeof import('@vueuse/core')['useFocus']
   const useFocusWithin: typeof import('@vueuse/core')['useFocusWithin']
+  const useForm: typeof import('./composables/alova')['useForm']
   const useFormatter: typeof import('./composables/index')['useFormatter']
   const useFps: typeof import('@vueuse/core')['useFps']
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
@@ -267,6 +274,7 @@ declare global {
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
+  const usePagination: typeof import('./composables/alova')['usePagination']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
   const usePerformanceObserver: typeof import('@vueuse/core')['usePerformanceObserver']
@@ -284,6 +292,7 @@ declare global {
   const useProductStore: typeof import('./stores/use-product-store')['default']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
+  const useRequest: typeof import('./composables/alova')['useRequest']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouteHash: typeof import('@vueuse/router')['useRouteHash']
@@ -297,6 +306,8 @@ declare global {
   const useScriptTag: typeof import('@vueuse/core')['useScriptTag']
   const useScroll: typeof import('@vueuse/core')['useScroll']
   const useScrollLock: typeof import('@vueuse/core')['useScrollLock']
+  const useSerialRequest: typeof import('./composables/alova')['useSerialRequest']
+  const useSerialWatcher: typeof import('./composables/alova')['useSerialWatcher']
   const useSessionStorage: typeof import('@vueuse/core')['useSessionStorage']
   const useShare: typeof import('@vueuse/core')['useShare']
   const useSlots: typeof import('vue')['useSlots']
@@ -335,6 +346,7 @@ declare global {
   const useVibrate: typeof import('@vueuse/core')['useVibrate']
   const useVirtualList: typeof import('@vueuse/core')['useVirtualList']
   const useWakeLock: typeof import('@vueuse/core')['useWakeLock']
+  const useWatcher: typeof import('./composables/alova')['useWatcher']
   const useWebNotification: typeof import('@vueuse/core')['useWebNotification']
   const useWebSocket: typeof import('@vueuse/core')['useWebSocket']
   const useWebWorker: typeof import('@vueuse/core')['useWebWorker']
@@ -378,8 +390,13 @@ declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
     readonly $api: UnwrapRef<typeof import('./composables/fetch')['$api']>
+    readonly Delete: UnwrapRef<typeof import('./composables/alova')['Delete']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
+    readonly Get: UnwrapRef<typeof import('./composables/alova')['Get']>
+    readonly Post: UnwrapRef<typeof import('./composables/alova')['Post']>
+    readonly Put: UnwrapRef<typeof import('./composables/alova')['Put']>
+    readonly alova: UnwrapRef<typeof import('./composables/alova')['default']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly caseCommentStore: UnwrapRef<typeof import('./composables/storage')['caseCommentStore']>
@@ -590,12 +607,14 @@ declare module 'vue' {
     readonly useEyeDropper: UnwrapRef<typeof import('@vueuse/core')['useEyeDropper']>
     readonly useFavicon: UnwrapRef<typeof import('@vueuse/core')['useFavicon']>
     readonly useFetch: UnwrapRef<typeof import('@vueuse/core')['useFetch']>
-    readonly useFetchData: UnwrapRef<typeof import('./composables/index')['useFetchData']>
+    readonly useFetchData: UnwrapRef<typeof import('./composables/fetch')['useFetchData']>
+    readonly useFetcher: UnwrapRef<typeof import('./composables/alova')['useFetcher']>
     readonly useFileDialog: UnwrapRef<typeof import('@vueuse/core')['useFileDialog']>
     readonly useFileSystemAccess: UnwrapRef<typeof import('@vueuse/core')['useFileSystemAccess']>
     readonly useFilters: UnwrapRef<typeof import('./composables/filters')['useFilters']>
     readonly useFocus: UnwrapRef<typeof import('@vueuse/core')['useFocus']>
     readonly useFocusWithin: UnwrapRef<typeof import('@vueuse/core')['useFocusWithin']>
+    readonly useForm: UnwrapRef<typeof import('./composables/alova')['useForm']>
     readonly useFps: UnwrapRef<typeof import('@vueuse/core')['useFps']>
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
@@ -634,6 +653,7 @@ declare module 'vue' {
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
+    readonly usePagination: UnwrapRef<typeof import('./composables/alova')['usePagination']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
     readonly usePerformanceObserver: UnwrapRef<typeof import('@vueuse/core')['usePerformanceObserver']>
@@ -651,6 +671,7 @@ declare module 'vue' {
     readonly useProductStore: UnwrapRef<typeof import('./stores/use-product-store')['default']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
+    readonly useRequest: UnwrapRef<typeof import('./composables/alova')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouteHash: UnwrapRef<typeof import('@vueuse/router')['useRouteHash']>
@@ -664,6 +685,8 @@ declare module 'vue' {
     readonly useScriptTag: UnwrapRef<typeof import('@vueuse/core')['useScriptTag']>
     readonly useScroll: UnwrapRef<typeof import('@vueuse/core')['useScroll']>
     readonly useScrollLock: UnwrapRef<typeof import('@vueuse/core')['useScrollLock']>
+    readonly useSerialRequest: UnwrapRef<typeof import('./composables/alova')['useSerialRequest']>
+    readonly useSerialWatcher: UnwrapRef<typeof import('./composables/alova')['useSerialWatcher']>
     readonly useSessionStorage: UnwrapRef<typeof import('@vueuse/core')['useSessionStorage']>
     readonly useShare: UnwrapRef<typeof import('@vueuse/core')['useShare']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
@@ -702,6 +725,7 @@ declare module 'vue' {
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
+    readonly useWatcher: UnwrapRef<typeof import('./composables/alova')['useWatcher']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>
     readonly useWebSocket: UnwrapRef<typeof import('@vueuse/core')['useWebSocket']>
     readonly useWebWorker: UnwrapRef<typeof import('@vueuse/core')['useWebWorker']>

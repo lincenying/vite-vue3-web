@@ -92,6 +92,7 @@ const { loading } = useFetchData({
     dataHasError: false,
     initFn,
     errorFn: () => {},
+    immediate: true,
 })
 
 useSaveScroll()
