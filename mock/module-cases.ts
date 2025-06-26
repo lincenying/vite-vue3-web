@@ -57,6 +57,7 @@ export default [
                         date: '@date("yyyy-MM-dd")',
                         intro: '@cparagraph(10, 15)',
                     })),
+                    hasPrev: page > 1 ? 1 : 0,
                     hasNext: 1,
                     total: 100,
                     pageSize: Number(pageSize),

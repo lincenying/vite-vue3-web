@@ -17,3 +17,13 @@ export interface LoadedType<T, E> {
      */
     immediate?: boolean
 }
+
+export interface ListType<T> {
+    list: T[]
+    total: number
+    totalPage: number
+    hasPrev: number | boolean
+    hasNext: number | boolean
+    pageSize: number
+    currPage: number
+}

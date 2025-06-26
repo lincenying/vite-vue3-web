@@ -1,14 +1,12 @@
 export interface FaqsType {
     id: number
     title: string
+    author: string
     date: string
+    category: string
+    category_id: number
     intro: string
-}
-
-export interface FaqsListType {
-    list: FaqsType[]
-    total: number
-    hasNext: number
-    pageSize: number
-    currPage: number
+    content: string
+    imgUrl: string
+    views: number
 }

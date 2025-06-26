@@ -34,6 +34,7 @@ export default [
                             content: '@cparagraph(1, 3)',
                         })),
                     })),
+                    hasPrev: page > 1 ? 1 : 0,
                     hasNext: 1,
                     total: 100,
                     pageSize: Number(pageSize),

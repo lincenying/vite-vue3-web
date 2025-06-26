@@ -72,10 +72,10 @@ const id = $(useRouteQuery<string>('id'))
 let productDetail = $ref<NewsType>(productDetailStore)
 async function getData() {
     const { code, data } = await $api.get<NewsType>('/news/detail', { id })
-    if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(newsDetailStore.value), data)) {
+    if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(productDetailStore.value), data)) {
         productDetail = data
         title.value = data.title
-        newsDetailStore.value = data
+        productDetailStore.value = data
     }
 }
 

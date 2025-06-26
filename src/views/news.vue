@@ -53,7 +53,8 @@
 
 <script setup lang="ts">
 import type { InitType } from './home.types'
-import type { NewsListType } from './news.types'
+import type { NewsType } from './news.types'
+import type { ListType } from '~/types'
 import { isEmpty, UTC2Date } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
@@ -70,9 +71,9 @@ const pageSize = $ref<number>(12)
 const category = $(useRouteQuery<number>('category'))
 const tag = $(useRouteQuery<string>('tag'))
 
-let newsLists = $ref<NewsListType>(newsListStore)
+let newsLists = $ref<ListType<NewsType>>(newsListStore)
 async function getData() {
-    const { code, data } = await $api.get<NewsListType>('/news/getList', { page, pageSize, category, tag })
+    const { code, data } = await $api.get<ListType<NewsType>>('/news/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(newsListStore.value), data)) {
         newsLists = data
         newsListStore.value = data

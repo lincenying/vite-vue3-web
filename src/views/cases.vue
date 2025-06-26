@@ -61,8 +61,9 @@
 </template>
 
 <script setup lang="ts">
-import type { CasesListType } from './cases.types'
+import type { CasesType } from './cases.types'
 import type { InitType } from './home.types'
+import type { ListType } from '~/types'
 import { isEmpty } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
@@ -79,9 +80,9 @@ const pageSize = $ref<number>(12)
 const category = $(useRouteQuery<number>('category'))
 const tag = $(useRouteQuery<string>('tag'))
 
-let casesLists = $ref<CasesListType>(casesListStore)
+let casesLists = $ref<ListType<CasesType>>(casesListStore)
 async function getData() {
-    const { code, data } = await $api.get<CasesListType>('/cases/getList', { page, pageSize, category, tag })
+    const { code, data } = await $api.get<ListType<CasesType>>('/cases/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(casesListStore.value), data)) {
         casesLists = data
         casesListStore.value = data

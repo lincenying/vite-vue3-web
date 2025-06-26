@@ -75,7 +75,8 @@
 </template>
 
 <script setup lang="ts">
-import type { InitType, ProductsListType } from './home.types'
+import type { InitType, ProductsType } from './home.types'
+import type { ListType } from '~/types'
 import { isEmpty } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
@@ -95,9 +96,9 @@ const category = $(useRouteQuery<number>('category'))
 const tag = $(useRouteQuery<string>('tag'))
 
 let dataHasError = $ref<boolean>(false)
-let productLists = $ref<ProductsListType>(productListStore)
+let productLists = $ref<ListType<ProductsType>>(productListStore)
 async function getData() {
-    const { code, data } = await $api.get<ProductsListType>('/home/getList', { page, pageSize, category, tag })
+    const { code, data } = await $api.get<ListType<ProductsType>>('/home/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(productListStore.value), data)) {
         productLists = data
         productListStore.value = data

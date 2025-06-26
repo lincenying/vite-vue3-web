@@ -161,6 +161,7 @@ export default [
                         date: '@date("yyyy-MM-dd")',
                         tag: Array.from({ length: 3 }, () => '@cword(3, 5)'),
                     })),
+                    hasPrev: page > 1 ? 1 : 0,
                     hasNext: 1,
                     total: 100,
                     pageSize: Number(pageSize),

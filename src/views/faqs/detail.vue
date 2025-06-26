@@ -52,8 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import type { FaqsType } from '../faqs.types'
 import type { InitType } from '../home.types'
-import type { NewsType } from '../news.types'
 import { isEmpty } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
@@ -68,13 +68,13 @@ useHead({
 
 const id = $(useRouteQuery<string>('id'))
 
-let faqDetail = $ref<NewsType>(faqsDetailStore)
+let faqDetail = $ref<FaqsType>(faqsDetailStore)
 async function getData() {
-    const { code, data } = await $api.get<NewsType>('/news/detail', { id })
-    if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(newsDetailStore.value), data)) {
+    const { code, data } = await $api.get<FaqsType>('/news/detail', { id })
+    if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(faqsDetailStore.value), data)) {
         faqDetail = data
         title.value = data.title
-        newsDetailStore.value = data
+        faqsDetailStore.value = data
     }
 }
 

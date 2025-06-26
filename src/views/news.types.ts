@@ -10,11 +10,3 @@ export interface NewsType {
     imgUrl: string
     views: number
 }
-
-export interface NewsListType {
-    list: NewsType[]
-    total: number
-    hasNext: number
-    pageSize: number
-    currPage: number
-}

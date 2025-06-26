@@ -46,8 +46,9 @@
 </template>
 
 <script setup lang="ts">
-import type { FaqsListType } from './faqs.types'
+import type { FaqsType } from './faqs.types'
 import type { InitType } from './home.types'
+import type { ListType } from '~/types'
 import { isEmpty } from '@lincy/utils'
 import topBannerImg from '@/assets/images/home/page-banner.jpg'
 
@@ -64,9 +65,9 @@ const pageSize = $ref<number>(12)
 const category = $(useRouteQuery<number>('category'))
 const tag = $(useRouteQuery<string>('tag'))
 
-let faqLists = $ref<FaqsListType>(faqsListStore)
+let faqLists = $ref<ListType<FaqsType>>(faqsListStore)
 async function getData() {
-    const { code, data } = await $api.get<FaqsListType>('/faqs/getList', { page, pageSize, category, tag })
+    const { code, data } = await $api.get<ListType<FaqsType>>('/faqs/getList', { page, pageSize, category, tag })
     if (code === 200 && !isEmpty(data) && !deepEqual(toRaw(faqsListStore.value), data)) {
         faqLists = data
         faqsListStore.value = data
