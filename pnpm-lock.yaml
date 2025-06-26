@@ -41,15 +41,6 @@ importers:
       element-plus:
         specifier: ^2.10.2
         version: 2.10.2(vue@3.5.17(typescript@5.8.3))
-      js-cookie:
-        specifier: ^3.0.5
-        version: 3.0.5
-      locutus:
-        specifier: ^2.0.32
-        version: 2.0.32
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
@@ -65,15 +56,9 @@ importers:
       vue:
         specifier: ^3.5.17
         version: 3.5.17(typescript@5.8.3)
-      vue-countup-v3:
-        specifier: ^1.4.2
-        version: 1.4.2(vue@3.5.17(typescript@5.8.3))
       vue-router:
         specifier: ^4.5.1
         version: 4.5.1(vue@3.5.17(typescript@5.8.3))
-      vue3-seamless-scroll:
-        specifier: ^3.0.2
-        version: 3.0.2(vue@3.5.17(typescript@5.8.3))
     devDependencies:
       '@iconify-json/carbon':
         specifier: ^1.2.10
@@ -96,9 +81,6 @@ importers:
       '@lincy/unocss-base-config':
         specifier: ^2.3.0
         version: 2.3.0(@unocss/core@66.2.3)(@unocss/preset-mini@66.2.3)(@unocss/preset-wind3@66.2.3)(postcss@8.5.6)(vite@7.0.0(@types/node@24.0.4)(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
-      '@types/locutus':
-        specifier: ^0.0.8
-        version: 0.0.8
       '@types/mockjs':
         specifier: ^1.0.10
         version: 1.0.10
@@ -165,9 +147,6 @@ importers:
       unplugin-vue-macros:
         specifier: ^2.14.5
         version: 2.14.5(@vueuse/core@13.4.0(vue@3.5.17(typescript@5.8.3)))(esbuild@0.25.5)(rollup@4.43.0)(typescript@5.8.3)(vite@7.0.0(@types/node@24.0.4)(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0))(vue-tsc@2.2.10(typescript@5.8.3))(vue@3.5.17(typescript@5.8.3))
-      url-search-params-polyfill:
-        specifier: ^8.2.5
-        version: 8.2.5
       vite:
         specifier: ^7.0.0
         version: 7.0.0(@types/node@24.0.4)(jiti@2.4.2)(sass@1.89.2)(yaml@2.8.0)
@@ -1052,9 +1031,6 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/locutus@0.0.8':
-    resolution: {integrity: sha512-96nd8Rx7DmcBuCYQ1PPNsBgo85VUV23yRO4twnFkvNUoqvm+yjlu+g9xsBBX5IlDitsEQmoMH0W5NBPLYvpgAw==}
-
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
 
@@ -1878,9 +1854,6 @@ packages:
       typescript:
         optional: true
 
-  countup.js@2.9.0:
-    resolution: {integrity: sha512-llqrvyXztRFPp6+i8jx25phHWcVWhrHO4Nlt0uAOSKHB8778zzQswa4MU3qKBvkXfJKftRYFJuVHez67lyKdHg==}
-
   cross-env@7.0.3:
     resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
     engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
@@ -2578,10 +2551,6 @@ packages:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
 
-  js-cookie@3.0.5:
-    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
-    engines: {node: '>=14'}
-
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -2681,10 +2650,6 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
-
-  locutus@2.0.32:
-    resolution: {integrity: sha512-fr7OCpbE4xeefhHqfh6hM2/l9ZB3XvClHgtgFnQNImrM/nqL950o6FO98vmUH8GysfQRCcyBYtZ4C8GcY52Edw==}
-    engines: {node: '>= 10', yarn: '>= 1'}
 
   lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
@@ -3681,9 +3646,6 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  url-search-params-polyfill@8.2.5:
-    resolution: {integrity: sha512-FOEojW4XReTmtZOB7xqSHmJZhrNTmClhBriwLTmle4iA7bwuCo6ldSfbtsFSb8bTf3E0a3XpfonAdaur9vqq8A==}
-
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
@@ -3768,11 +3730,6 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
-  vue-countup-v3@1.4.2:
-    resolution: {integrity: sha512-nRC65jBcdgwybxqztgd/WaK8ZN5T9ECPyiCFGYFMewCsvqdRVo1CtpT7JREcPNF837Fgu/izTSFiuzrIGD6w0A==}
-    peerDependencies:
-      vue: ^3.0.0
-
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
     engines: {node: '>=12'}
@@ -3805,9 +3762,6 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
-
-  vue3-seamless-scroll@3.0.2:
-    resolution: {integrity: sha512-LpKoL1ht71MASabUBsoSqbhLqcuKSrD+u01dgHac+/cthPAShKvcdM7dSGtaxjVntSFqdeViqJssjcwy/KqRSA==}
 
   vue@3.5.17:
     resolution: {integrity: sha512-LbHV3xPN9BeljML+Xctq4lbz2lVHCR6DtbpTf5XIO6gugpXUN49j2QQPcMj086r9+AkJ0FfUT8xjulKKBkkr9g==}
@@ -4668,8 +4622,6 @@ snapshots:
   '@types/estree@1.0.8': {}
 
   '@types/json-schema@7.0.15': {}
-
-  '@types/locutus@0.0.8': {}
 
   '@types/lodash-es@4.17.12':
     dependencies:
@@ -5763,8 +5715,6 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-  countup.js@2.9.0: {}
-
   cross-env@7.0.3:
     dependencies:
       cross-spawn: 7.0.6
@@ -6502,8 +6452,6 @@ snapshots:
 
   jiti@2.4.2: {}
 
-  js-cookie@3.0.5: {}
-
   js-tokens@4.0.0: {}
 
   js-tokens@9.0.1: {}
@@ -6597,8 +6545,6 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
-
-  locutus@2.0.32: {}
 
   lodash-es@4.17.21: {}
 
@@ -7857,8 +7803,6 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  url-search-params-polyfill@8.2.5: {}
-
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
@@ -7927,11 +7871,6 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
-  vue-countup-v3@1.4.2(vue@3.5.17(typescript@5.8.3)):
-    dependencies:
-      countup.js: 2.9.0
-      vue: 3.5.17(typescript@5.8.3)
-
   vue-demi@0.14.10(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       vue: 3.5.17(typescript@5.8.3)
@@ -7963,13 +7902,6 @@ snapshots:
       '@volar/typescript': 2.4.14
       '@vue/language-core': 2.2.10(typescript@5.8.3)
       typescript: 5.8.3
-
-  vue3-seamless-scroll@3.0.2(vue@3.5.17(typescript@5.8.3)):
-    dependencies:
-      element-plus: 2.10.2(vue@3.5.17(typescript@5.8.3))
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
 
   vue@3.5.17(typescript@5.8.3):
     dependencies:
