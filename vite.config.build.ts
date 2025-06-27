@@ -22,6 +22,9 @@ const config: { server: ServerOptions, build: BuildOptions } = {
         warmup: {
             clientFiles: ['./src/main.ts', './src/views/*.vue'],
         },
+        hmr: {
+            port: 58871,
+        },
     },
     build: {
         target: 'es2018',
