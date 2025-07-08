@@ -392,7 +392,6 @@ declare module 'vue' {
     readonly $api: UnwrapRef<typeof import('./composables/fetch')['$api']>
     readonly Delete: UnwrapRef<typeof import('./composables/alova')['Delete']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly Get: UnwrapRef<typeof import('./composables/alova')['Get']>
     readonly Post: UnwrapRef<typeof import('./composables/alova')['Post']>
     readonly Put: UnwrapRef<typeof import('./composables/alova')['Put']>
