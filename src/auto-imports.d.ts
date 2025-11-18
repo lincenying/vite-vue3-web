@@ -129,6 +129,7 @@ declare global {
   const refAutoReset: typeof import('@vueuse/core')['refAutoReset']
   const refDebounced: typeof import('@vueuse/core')['refDebounced']
   const refDefault: typeof import('@vueuse/core')['refDefault']
+  const refManualReset: typeof import('@vueuse/core')['refManualReset']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const resolveComponent: typeof import('vue')['resolveComponent']
@@ -395,6 +396,7 @@ declare module 'vue' {
     readonly $api: UnwrapRef<typeof import('./composables/fetch')['$api']>
     readonly Delete: UnwrapRef<typeof import('./composables/alova')['Delete']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ElMessage: UnwrapRef<typeof import('element-plus/es')['ElMessage']>
     readonly Get: UnwrapRef<typeof import('./composables/alova')['Get']>
     readonly Post: UnwrapRef<typeof import('./composables/alova')['Post']>
     readonly Put: UnwrapRef<typeof import('./composables/alova')['Put']>
@@ -512,11 +514,11 @@ declare module 'vue' {
     readonly refAutoReset: UnwrapRef<typeof import('@vueuse/core')['refAutoReset']>
     readonly refDebounced: UnwrapRef<typeof import('@vueuse/core')['refDebounced']>
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
+    readonly refManualReset: UnwrapRef<typeof import('@vueuse/core')['refManualReset']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
-    readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly routerKey: UnwrapRef<typeof import('./composables/provide')['routerKey']>
     readonly scrollToComment: UnwrapRef<typeof import('./composables/index')['scrollToComment']>
     readonly scrollToNav: UnwrapRef<typeof import('./composables/index')['scrollToNav']>

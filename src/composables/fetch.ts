@@ -215,7 +215,7 @@ export function useFetchData<T, E>(payload: LoadedType<T, E>) {
     scope.run(() => {
         log('监听开始')
         watch(
-            resolveRef(watchData),
+            toRef(watchData),
             async (val, oldVal) => {
                 const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
                 log('监听数据发生变化, 执行初始化函数')
@@ -231,7 +231,7 @@ export function useFetchData<T, E>(payload: LoadedType<T, E>) {
             },
         )
         watch(
-            resolveRef(dataHasError),
+            toRef(dataHasError),
             async () => {
                 const { stop } = useTimeoutFn(() => toggleLoading(true), 300)
                 log('数据加载失败, 执行错误函数')

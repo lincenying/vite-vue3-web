@@ -1,4 +1,4 @@
-import type { AnyFn, MaybeRef } from '@vueuse/core'
+import type { AnyFn } from '@vueuse/core'
 
 export type RefOrComputedRef<T> = Ref<T> | ComputedRef<T>
 
