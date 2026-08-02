@@ -4,7 +4,6 @@
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "lib": ["DOM", "ESNext"],
-    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
@@ -18,6 +17,8 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "importHelpers": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
