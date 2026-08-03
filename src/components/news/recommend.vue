@@ -23,7 +23,7 @@ defineOptions({
 })
 
 let ls = $(useStorage<NewsType[]>('news-recommend', []))
-let data1 = $ref<NewsType[]>(ls)
+let data1 = $ref<NewsType[]>(ls ?? [])
 
 async function getData() {
     const { code, data } = await $api.get<NewsType[]>('/news/getRecommend', { })

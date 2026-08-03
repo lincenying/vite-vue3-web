@@ -28,7 +28,7 @@ defineOptions({
 })
 
 let ls = $(useStorage<ProductsType[]>('product-recommend', []))
-let data1 = $ref<ProductsType[]>(ls)
+let data1 = $ref<ProductsType[]>(ls ?? [])
 
 async function getData() {
     const { code, data } = await $api.get<ProductsType[]>('/home/getRecommend', { })

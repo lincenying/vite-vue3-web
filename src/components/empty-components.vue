@@ -3,13 +3,11 @@
 </template>
 
 <script lang="ts" setup>
-import { withDefaults } from 'vue-macros/macros' assert { type: 'macro' }
-
 defineOptions({
     name: 'EmptyComponents',
 })
 
-const { title } = withDefaults(definePropsRefs<{
+withDefaults(defineProps<{
     title?: string
 }>(), {
     title: 'title',

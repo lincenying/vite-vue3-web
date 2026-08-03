@@ -65,7 +65,7 @@
     "polyfill-library": "^4.8.0",
     "sass": "^1.102.0",
     "stylelint": "^17.14.1",
-    "typescript": "^7.0.2",
+    "typescript": "^6.0.3",
     "unocss": "^66.7.5",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-icons": "^23.0.1",
